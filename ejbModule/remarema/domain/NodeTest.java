@@ -1,14 +1,15 @@
 package remarema.domain;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import remarema.domain.*;
 
 
 public class NodeTest {
 	
+
 	public static void main(String[] args){
 		EntityManagerFactory emf = 
 				Persistence.createEntityManagerFactory("NodeServiceBean");
@@ -18,13 +19,15 @@ public class NodeTest {
 	
 	//create and persist an node
 	em.getTransaction().begin();
-	Node n = service.createNode(20,"Client001", "password");
+	Node n = service.createNode(0, "Client001", "password");
 	em.getTransaction().commit();
 	System.out.println("Persisted " + n);
 	
+
+	
 	
 	//find a specific node
-	n = service.findNode(20);
+	n = service.findNode(1);
 	System.out.println("Found" + n);
 	
 	//find all nodes
@@ -35,9 +38,9 @@ public class NodeTest {
 	
 	//remove a node
 	em.getTransaction().begin();
-	service.removeNode(20);
+	service.removeNode(1);
 	em.getTransaction().commit();
-	System.out.println("Removed Node 20");
+	System.out.println("Removed Node 1");
 	
 	//close the EM and EMF when done
 	em.close();
