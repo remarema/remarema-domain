@@ -14,5 +14,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Rebecca vanLangelaan/Documents/diplomarbeit-code/mysql-connector-java-5.1.34-bin.jar" sourcepath="C:/Users/Rebecca vanLangelaan/Documents/diplomarbeit-code/mysql-connector-java-5.1.34-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Rebecca vanLangelaan/Documents/diplomarbeit-code/hibernate3.jar" sourcepath="C:/Users/Rebecca vanLangelaan/Documents/diplomarbeit-code/hibernate3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Rebecca vanLangelaan/Documents/diplomarbeit-code/hibernate-jpa-2.0-api-1.0.0.Final.jar" sourcepath="C:/Users/Rebecca vanLangelaan/Documents/diplomarbeit-code/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
