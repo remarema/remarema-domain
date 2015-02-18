@@ -1,51 +1,48 @@
-package remarema.domain;
+package remarema.domain.network;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import remarema.domain.*;
 
 
-public class NodeTest {
-	
+public class NetworkTest {
 
 	public static void main(String[] args){
 		EntityManagerFactory emf = 
-				Persistence.createEntityManagerFactory("NodeServiceBean");
+				Persistence.createEntityManagerFactory("openjpa");
 		EntityManager em = emf.createEntityManager();
-		NodeServiceBean service = new NodeServiceBean(em);
+		NetworkServiceBean service = new NetworkServiceBean(em);
 	
 	
 	//create and persist an node
 	em.getTransaction().begin();
-	Node n = service.createNode(0, "Client001", "password");
+	Network nw = service.createNetwork(0, "NetworkA", "192.168.1.1");
 	em.getTransaction().commit();
-	System.out.println("Persisted " + n);
+	System.out.println("Persisted " + nw);
 	
 
-	
-	
 	//find a specific node
-	n = service.findNode(1);
-	System.out.println("Found" + n);
+	nw = service.findNetwork(0);
+	System.out.println("Found" + nw);
 	
 	//find all nodes
-	List<Node> nodes = service.findAllNodes();
-	for (Node node : nodes){
-		System.out.println("Found Node: " + node);
+	List<Network> networks = service.findAllNetworks();
+	for (Network network : networks){
+		System.out.println("Found Network: " + network);
 	}
 	
+
 	//remove a node
 	em.getTransaction().begin();
-	service.removeNode(1);
+	service.removeNetwork(1);
 	em.getTransaction().commit();
-	System.out.println("Removed Node 1");
+	System.out.println("Removed network 1");
 	
 	//close the EM and EMF when done
 	em.close();
 	emf.close();
-	
 	
 	}
 }

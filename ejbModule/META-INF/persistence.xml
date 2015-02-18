@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-<persistence-unit name="NodeServiceBean" transaction-type="RESOURCE_LOCAL">
+<persistence-unit name="openjpa" transaction-type="RESOURCE_LOCAL">
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-    <class>remarema.domain.Node</class>
-   	
+    <class>remarema.domain.node.Node</class>
+    <class>remarema.domain.network.Network</class>
 	   	<properties>
 			  <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/remarema"/>
 			  <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
@@ -17,4 +17,8 @@
 			  <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
 		</properties>
 </persistence-unit>
+
+
+
+
 </persistence>

@@ -1,4 +1,4 @@
-package remarema.domain;
+package remarema.domain.node;
 
 import javax.ejb.Remote;
 

@@ -1,4 +1,4 @@
-package remarema.domain;
+package remarema.domain.node;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 
 /**
  * Session Bean implementation class NodesPersistentBean
@@ -26,33 +25,32 @@ public class NodeServiceBean implements NodeServiceBeanRemote {
     public NodeServiceBean(EntityManager em) {
     	this.em = em;
     }
-    
-    @WebMethod
-    public Node createNode(int id, String nodeName, String nodeCredential){
-		Node n = new Node(id);
+
+    public Node createNode(int nodeID, String nodeName, String nodeCredential, String nodeNetwork, String nodeIP, String softwareVersion){
+		Node n = new Node(nodeID);
 		n.setNodeName(nodeName);
 		n.setNodeCredential(nodeCredential);
+		n.setNodeNetwork(nodeNetwork);
+		n.setNodeIP(nodeIP);
+		n.setSoftwareVersion(softwareVersion);
 		em.persist(n);
 		return n;
 	}
-	
-    @WebMethod
-	public void removeNode(int id){
-		Node n = findNode(id);
+
+	public void removeNode(int nodeID){
+		Node n = findNode(nodeID);
 		if(n != null){
 			em.remove(n);
 		}
 	}
-	
-    @WebMethod
-	public Node findNode(int id) {
-		return em.find(Node.class, id);
+
+	public Node findNode(int nodeID) {
+		return em.find(Node.class, nodeID);
 	}
 	
-    @WebMethod
 	public List<Node> findAllNodes(){
 		TypedQuery<Node> query = em.createQuery(
-				"SELECT n FROM Node n",Node.class);
+				"SELECT n FROM Node n", Node.class);
 		return query.getResultList();
 	}
 
