@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-<persistence-unit name="openjpa" transaction-type="RESOURCE_LOCAL">
-    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
-    <class>remarema.domain.node.Node</class>
-    <class>remarema.domain.network.Network</class>
-	   	<properties>
-			  <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/remarema"/>
-			  <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
-			  <property name="openjpa.ConnectionUserName" value="root"/>
-			  <property name="openjpa.ConnectionPassword" value=""/>
-			  <property name="openjpa.DynamicEnhancementAgent" value="true"/>
-			  <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
-			  <property name="openjpa.Log" value="SQL=TRACE"/>
-			  <property name="openjpa.ConnectionFactoryProperties" value="PrettyPrint=true, PrettyPrintLineLength=72, PrintParameters=true, MaxActive=10, MaxIdle=5, MinIdle=2, MaxWait=60000"/>
-			  <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="openjpa">
+		<jta-data-source>jdbc/remaremaDB</jta-data-source>
+		<class>remarema.domain.node.Node</class>
+		<class>remarema.domain.network.Network</class>
+		<properties>
+
+			<!-- <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/remarema"/> 
+				<property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/> 
+				<property name="openjpa.ConnectionUserName" value="root"/> <property name="openjpa.ConnectionPassword" 
+				value=""/> <property name="openjpa.DynamicEnhancementAgent" value="true"/> 
+				<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/> <property 
+				name="openjpa.ConnectionFactoryProperties" value="PrettyPrint=true, PrettyPrintLineLength=72, 
+				PrintParameters=true, MaxActive=10, MaxIdle=5, MinIdle=2, MaxWait=60000"/> 
+				<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/> -->
 		</properties>
-</persistence-unit>
+	</persistence-unit>
 
 
 
