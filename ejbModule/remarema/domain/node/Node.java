@@ -1,4 +1,5 @@
 package remarema.domain.node;
+import remarema.domain.network.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -35,7 +38,20 @@ public class Node implements Serializable{
 	@Column (name="softwareVersion")
 	private String softwareVersion;
 	
+	
+	/*
+	public Collection<Network> networks;
+	
+	@ManyToMany(mappedBy = "nodes")
+	public Collection<Network> getNetworks(){
+		return this.networks;
+	}
+	public void setNetworks(Collection<Network> networks){
+		this.networks = networks;
+	}
+	*/
 
+	
 	public Node(){
 	}
 	

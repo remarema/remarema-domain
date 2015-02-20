@@ -4,7 +4,6 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="openjpa">
-		<jta-data-source>jdbc/remaremaDB</jta-data-source>
 		<class>remarema.domain.node.Node</class>
 		<class>remarema.domain.network.Network</class>
 		<properties>
