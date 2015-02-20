@@ -1,4 +1,4 @@
-package remarema.domain.network;
+package remarema.services;
 
 import java.util.List;
 
@@ -8,14 +8,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import remarema.domain.node.Node;
+import remarema.domain.Network;
+import remarema.domain.Node;
+
 
 /**
  * Session Bean implementation class NetworkServiceBean
  */
 @Stateless
 @LocalBean
-public class NetworkServiceBean implements NetworkServiceBeanRemote {
+public class NetworkServiceBean {
 
 	@PersistenceContext
 	protected EntityManager em;

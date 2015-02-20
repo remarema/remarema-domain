@@ -1,7 +1,8 @@
-package remarema.domain.node;
+package remarema.services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -9,12 +10,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import remarema.domain.Node;
+
 /**
  * Session Bean implementation class NodesPersistentBean
  */
 @Stateless
-@WebService(serviceName="NodeService")
-public class NodeServiceBean implements NodeServiceBeanRemote {
+@LocalBean
+public class NodeServiceBean {
 	
 	@PersistenceContext
 	protected EntityManager em;

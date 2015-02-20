@@ -1,5 +1,4 @@
-package remarema.domain.node;
-import remarema.domain.network.*;
+package remarema.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import remarema.domain.network.*;
 
 @Entity
 @Table(name="nodes")

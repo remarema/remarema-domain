@@ -1,4 +1,4 @@
-package remarema.domain.network;
+package remarema.domain;
 
 import java.util.Collection;
 
@@ -11,7 +11,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import remarema.domain.node.*;
 
 @Entity
 @Table(name = "networks")

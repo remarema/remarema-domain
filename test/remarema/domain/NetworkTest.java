@@ -1,10 +1,13 @@
-package remarema.domain.network;
+package remarema.domain;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import remarema.domain.Network;
+import remarema.services.NetworkServiceBean;
 
 
 public class NetworkTest {
