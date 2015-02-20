@@ -1,15 +1,13 @@
 package remarema.services;
 
 import java.util.List;
-
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import remarema.domain.*;
 
-import remarema.domain.Network;
-import remarema.domain.Node;
 
 
 /**
