@@ -1,7 +1,9 @@
 package remarema.domain;
 
+import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,36 +16,37 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "networks")
-public class Network {
+public class Network implements Serializable{
 	
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	@Column(name="networkID")
-	public int networkID;
+	private int networkID;
 	
 	@Column(name="networkName")
-	public String networkName;
+	private String networkName;
 	
 	@Column (name="networkIP")
-	public String networkIP;
+	private String networkIP;
 	
-	/*
 	
-	public Collection<Node> nodes;
-	@ManyToMany
-	@JoinTable(name="network_has_node",
-		joinColumns = {@JoinColumn(name="networkID", referencedColumnName="ID")},
-		inverseJoinColumns = {@JoinColumn(name="nodeID", referencedColumnName="ID")})
+	private Collection<Node> nodes;
+	@ManyToMany(targetEntity = remarema.domain.Node.class, 
+			cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	
-	public Collection<Node> getNodes(){
-		return this.nodes;
+	@JoinTable(name = "network_has_node",
+		joinColumns = {@JoinColumn(name="networkID")},
+		inverseJoinColumns = @JoinColumn(name="nodeID"))
+	
+	private Collection<Node> getNodes(){
+		return nodes;
 	}
 	public void setNodes(Collection<Node> nodes){
 		this.nodes = nodes;
 	}
 	
-	*/
 	
 	public Network(){
 	}

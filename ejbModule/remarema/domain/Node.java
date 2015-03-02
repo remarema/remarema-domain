@@ -3,7 +3,9 @@ package remarema.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,18 +38,19 @@ public class Node implements Serializable{
 	private String softwareVersion;
 	
 	
-	/*
-	public Collection<Network> networks;
+	private Set<Network> networks;
 	
-	@ManyToMany(mappedBy = "nodes")
-	public Collection<Network> getNetworks(){
-		return this.networks;
+	@ManyToMany(
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+			mappedBy = "nodes",
+			targetEntity = Network.class)
+	
+	private Set<Network> getNetworks(){
+		return networks;
 	}
-	public void setNetworks(Collection<Network> networks){
+	public void setNetworks(Set<Network> networks){
 		this.networks = networks;
 	}
-	*/
-
 	
 	public Node(){
 	}
