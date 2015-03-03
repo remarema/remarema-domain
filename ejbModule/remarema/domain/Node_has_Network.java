@@ -8,11 +8,11 @@ import javax.persistence.Table;
 @Table (name="node_has_network")
 public class Node_has_Network {
 	
-	@Column (name="nodeID")
-	private int nodeID;
+	@Column (name="nodes_nodeID")
+	private int nodes_nodeID;
 	
-	@Column (name="networkID")
-	private int networkID;
+	@Column (name="networks_networkID")
+	private int networks_networkID;
 	
 	
 

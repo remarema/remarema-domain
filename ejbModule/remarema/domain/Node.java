@@ -1,8 +1,6 @@
 package remarema.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -37,9 +33,8 @@ public class Node implements Serializable{
 	@Column (name="softwareVersion")
 	private String softwareVersion;
 	
-	
+	/*
 	private Set<Network> networks;
-	
 	@ManyToMany(
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
 			mappedBy = "nodes",
@@ -51,6 +46,8 @@ public class Node implements Serializable{
 	public void setNetworks(Set<Network> networks){
 		this.networks = networks;
 	}
+	*/
+	
 	
 	public Node(){
 	}
@@ -96,5 +93,10 @@ public class Node implements Serializable{
 	public void setSoftwareVersion(String softwareVersion) {
 		this.softwareVersion = softwareVersion;
 	}
-}
+	
+	@Override
+	public String toString(){
+		return getID() + ", " + getNodeName()+ ", " + getNodeIP();
+	}
+} 
 
