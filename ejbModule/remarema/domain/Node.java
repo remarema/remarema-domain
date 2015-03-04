@@ -24,8 +24,6 @@ public class Node implements Serializable{
 	private int nodeID;
 	@Column(name="nodeName")
 	private String nodeName;
-	@Column(name="nodeCredential")
-	private String nodeCredential;
 	@Column (name="nodeNetwork")
 	private String nodeNetwork;
 	@Column (name="nodeIP")
@@ -66,12 +64,6 @@ public class Node implements Serializable{
 	}
 	public void setNodeName(String nodeName) {
 		this.nodeName = nodeName;
-	}
-	public String getNodeCredential() {
-		return nodeCredential;
-	}
-	public void setNodeCredential(String nodeCredential) {
-		this.nodeCredential = nodeCredential;
 	}
 	public String getNodeNetwork(){
 		return nodeNetwork;

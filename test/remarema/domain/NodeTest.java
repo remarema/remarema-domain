@@ -21,7 +21,7 @@ public class NodeTest {
 	
 	//create and persist an node
 	em.getTransaction().begin();
-	Node n = service.createNode(0,"Client001", "password", "NetworkA", "192.168.1.1", "1.0");
+	Node n = service.createNode(0,"Client001","NetworkA", "192.168.1.1", "1.0");
 	em.getTransaction().commit();
 	System.out.println("Persisted " + n);
 	

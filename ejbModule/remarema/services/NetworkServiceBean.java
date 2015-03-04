@@ -53,7 +53,7 @@ public class NetworkServiceBean {
 	}
     
     public int findAnzahlNetworks(){
-		int a = findAllNetworks().size()+1;
+		int a = findAllNetworks().size()+1;    //+1, da wir unten in der Schleife mit 1 beginnen
 		return a;
 	}
     
