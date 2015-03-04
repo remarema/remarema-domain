@@ -1,51 +1,82 @@
 package remarema.domain;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import remarema.services.NodeServiceBean;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NodeTest {
+	EntityManager entityManager = JPASetup.getDefault().createEntityManager();
+	NodeServiceBean serviceNode = new NodeServiceBean(entityManager);
+	Node n;
 	
+	@Test
+	public void a_erstelleNode(){
+		entityManager.getTransaction().begin();
+		n = serviceNode.createNode(0,"Client001","NetworkA", "192.168.1.1", "1.0");
+		entityManager.getTransaction().commit();
+		System.out.println("Persisted " + n);
+	}
+	@Test
+	public void b_erstelleNode2(){
+		entityManager.getTransaction().begin();
+		n = serviceNode.createNode(0,"Client002","NetworkB", "192.168.1.1", "1.0");
+		entityManager.getTransaction().commit();
+		System.out.println("Persisted " + n);
+	}
+	
+	@Test
+	public void c_test() {
+		entityManager.find(Node.class, 1);
+	}
+	
+	@Test
+	public void d_findNode(){
+		//find a specific node
+		n = serviceNode.findNode(1);
+		System.out.println("Found" + n);
+	}
+	
+	@Test
+	public void e_findNodes(){
+		//find all nodes
+				List<Node> nodes = serviceNode.findAllNodes();
+				for (Node node : nodes){
+					System.out.println("Found Node: " + node);
+				}
+	}
+	
+	@Test
+	public void f_Nodes_Array_ausgeben(){
+		int AnzahlNodes = serviceNode.findAnzahlNodes();
+		String[][][] array = new String[AnzahlNodes][AnzahlNodes][AnzahlNodes];
+		array = serviceNode.nodesArray();
+		
+		for(int i = 1; i <AnzahlNodes;i++){
+			System.out.println("Ausgabe Node: " + array[i][0][0] +", " + array[i][i][0]+
+					", " + array[i][i][i]);
+		}
+	}	
 
-	public static void main(String[] args){
-		EntityManagerFactory emf = 
-				Persistence.createEntityManagerFactory("openjpa");
-		EntityManager em = emf.createEntityManager();
-		NodeServiceBean service = new NodeServiceBean(em);
+	@Test
+	public void g_loesche_Node(){
+		entityManager.getTransaction().begin();
+		serviceNode.removeNode(1);
+		entityManager.getTransaction().commit();
+		System.out.println("Removed Node 1");
+	}
 	
-	
-	//create and persist an node
-	em.getTransaction().begin();
-	Node n = service.createNode(0,"Client001","NetworkA", "192.168.1.1", "1.0");
-	em.getTransaction().commit();
-	System.out.println("Persisted " + n);
-	
-
-	//find a specific node
-	n = service.findNode(1);
-	System.out.println("Found" + n);
-	
-	//find all nodes
-	List<Node> nodes = service.findAllNodes();
-	for (Node node : nodes){
-		System.out.println("Found Node: " + node);
+	@Test
+	public void g_nodes_liste_ausgeben(){
+		f_Nodes_Array_ausgeben();
 	}
 	
 
-	//remove a node
-	em.getTransaction().begin();
-	service.removeNode(1);
-	em.getTransaction().commit();
-	System.out.println("Removed Node 1");
-	
-	//close the EM and EMF when done
-	em.close();
-	emf.close();
-	
-	}
 }
