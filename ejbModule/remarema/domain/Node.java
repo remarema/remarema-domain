@@ -15,6 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="nodes")
 public class Node implements Serializable{
+	/**
+	 * 
+	 */
 	
 	private static final long serialVersionUID = 1L;
 
@@ -31,20 +34,27 @@ public class Node implements Serializable{
 	@Column (name="softwareVersion")
 	private String softwareVersion;
 	
-	/*
-	private Set<Network> networks;
+	
+	
 	@ManyToMany(
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
 			mappedBy = "nodes",
 			targetEntity = Network.class)
 	
+	private Set<Network> networks;
 	private Set<Network> getNetworks(){
 		return networks;
 	}
 	public void setNetworks(Set<Network> networks){
 		this.networks = networks;
 	}
-	*/
+	
+	@ManyToMany
+	private Set<Softwareversion> softwareversions;
+	
+	
+	
+	
 	
 	
 	public Node(){

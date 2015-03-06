@@ -52,10 +52,17 @@ public class NetworkServiceBean {
 		return query.getResultList();
 	}
     
+    /**
+     * Gibt die um 1 erhöhte Anzahl der Netzwerke zurück
+     * 
+     * @return Anzahl der Netzwerke
+     */
     public int findAnzahlNetworks(){
 		int a = findAllNetworks().size()+1;    //+1, da wir unten in der Schleife mit 1 beginnen
 		return a;
 	}
+    
+    
     
     public String[][][] networkArray(){
     	List<Network> networkList = new ArrayList<Network>();

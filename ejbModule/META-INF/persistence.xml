@@ -10,7 +10,6 @@
 		<class>remarema.domain.Softwarepackage</class>
 		<class>remarema.domain.Softwareversion</class>
 		<!--<class>remarema.domain.Settings</class>  -->
-		<class>remarema.domain.Node_has_Network</class>
 		
 		<properties>
 

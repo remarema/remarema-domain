@@ -1,6 +1,5 @@
 package remarema.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,13 +9,18 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import remarema.services.*;
+import remarema.services.NetworkServiceBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NetworkTest {
 	EntityManager entityManager = JPASetup.getDefault().createEntityManager();
 	NetworkServiceBean serviceNetwork = new NetworkServiceBean(entityManager);
 	Network nw;
+	
+	@Before
+	public void setup(){
+		
+	}
 	
 	
 	@Test
