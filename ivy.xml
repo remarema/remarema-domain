@@ -6,6 +6,7 @@
         module="remarema-domain">
 	</info>
 	<dependencies>
+		<dependency org="mysql" name="mysql-connector-java" rev="5.1.34"/>
 		<dependency org="org.mockito" name="mockito-all" rev="1.10.+"/>
 		<dependency org="junit" name="junit" rev="4.12"/>
 		<dependency org="com.h2database" name="h2" rev="1.4.181"/>
