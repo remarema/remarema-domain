@@ -2,15 +2,18 @@ package remarema.domain;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -46,23 +49,18 @@ public class Network implements Serializable{
 	private String networkIP;
 	
 	
-	@ManyToMany(
-			cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	/*
+	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY)
+	private Set<Node> nodes;
 	
-	@JoinTable(name = "network_has_node",
-		joinColumns = {@JoinColumn(name="networks_networkID")},
-		inverseJoinColumns = @JoinColumn(name="nodes_nodeID")
-	)
-	
-	private Collection<Node> nodes;
-	private Collection<Node> getNodes(){
+	public Set<Node> getNode(){
 		return nodes;
 	}
-	public void setNodes(Collection<Node> nodes){
+	
+	public void setNode(Set<Node> nodes){
 		this.nodes = nodes;
 	}
-	
-	
+	*/
 	
 	public Network(){
 	}

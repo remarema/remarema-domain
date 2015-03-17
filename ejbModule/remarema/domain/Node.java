@@ -6,10 +6,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,28 +38,50 @@ public class Node implements Serializable{
 	@Column (name="softwareVersion")
 	private String softwareVersion;
 	
+	/*
 	
+	@JoinColumn(name="networks_networkID", referencedColumnName = "networks_networkID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Network network;
 	
-	@ManyToMany(
-			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-			mappedBy = "nodes",
-			targetEntity = Network.class)
-	
-	private Set<Network> networks;
-	private Set<Network> getNetworks(){
-		return networks;
+	public Network getNetwork(){
+		return network;
 	}
-	public void setNetworks(Set<Network> networks){
-		this.networks = networks;
+	public void setNetwork(Network network){
+		this.network = network;
 	}
+	
 	
 	@ManyToMany
+	@JoinTable(name="nodes_has_softwareversion", 
+			joinColumns = @JoinColumn(name="nodes_nodeID", referencedColumnName="nodeID"),
+			inverseJoinColumns=@JoinColumn(
+					name="softwareversion_softwareID", referencedColumnName="softwareID"))
 	private Set<Softwareversion> softwareversions;
 	
+	public Set<Softwareversion> getSoftwareversion(){
+		return softwareversions;
+	}
+	public void setSoftwareversion(Set<Softwareversion> softwareversions){
+		this.softwareversions = softwareversions;
+	}
 	
 	
+	@ManyToMany
+	@JoinTable(name="deploy_has_nodes", 
+			joinColumns = @JoinColumn(name="deploy_deployID", referencedColumnName="deployID"),
+			inverseJoinColumns=@JoinColumn(
+					name="nodes_nodeID", referencedColumnName="nodeID"))
+	private Set<Deploy> deploy;
 	
+	public Set<Deploy> getDeploy(){
+		return deploy;
+	}
+	public void setDeploy(Set<Deploy> deploy){
+		this.deploy = deploy;
+	}
 	
+	*/
 	
 	public Node(){
 	}

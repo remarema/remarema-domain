@@ -29,6 +29,22 @@ public class Softwarepackage implements Serializable{
 	
 	@Column(name="softwarepackageName")
 	private String softwarepackageName;
+	
+	
+	/*
+	@OneToMany(mappedBy = "softwarepackage", fetch = FetchType.LAZY)
+	private Set<Softwareversion> softwareversions;
+	
+	public Set<Softwareversion> getSoftwareversion(){
+		return softwareversions;
+	}
+	public void setSoftwareversion(Set<Softwareversion> softwareversions){
+		this.softwareversions = softwareversions;
+	}
+	*/
+	
+	
+	
 
 	public int getSoftwarepackageID() {
 		return softwarepackageID;

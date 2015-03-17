@@ -1,12 +1,14 @@
 package remarema.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +30,17 @@ public class Deploy implements Serializable{
 	
 	@Column (name="installationDateTime")
 	private String installationDateTime;
+	
+	/*
+	@ManyToMany
+	Set<Node> nodes;
+	public Set<Node> getNode(){
+		return nodes;
+	}
+	public void setNode(Set<Node> nodes){
+		this.nodes = nodes;
+	}
+	*/
 
 	public int getDeployID() {
 		return deployID;
