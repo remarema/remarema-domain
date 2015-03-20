@@ -11,8 +11,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,9 +36,6 @@ public class Network implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
 	@Id
 	@GeneratedValue
 	@Column(name="networkID")
@@ -45,8 +44,16 @@ public class Network implements Serializable{
 	@Column(name="networkName")
 	private String networkName;
 	
-	@Column (name="networkParentID")
-	private int networkParentID;
+	
+	//SELF-JOIN
+	@ManyToOne
+	@JoinColumn(name="networkParentID")
+	private Network networkParent;
+	
+	@OneToMany(mappedBy = "networkParentID")
+	private Set<Network> network;
+	
+	
 	
 	
 	
@@ -65,8 +72,8 @@ public class Network implements Serializable{
 	public Network(){
 	}
 	
-	public Network(int networkID){
-		this.networkID = networkID;
+	public Network(String networkName){
+		this.networkName = networkName;
 	}
 	public int getNetworkID() {
 		return networkID;
@@ -93,16 +100,10 @@ public class Network implements Serializable{
 		this.networkName = networkName;
 	}
 
-	public int getNetworkParentID() {
-		return networkParentID;
-	}
-
-	public void setNetworkParentID(int networkParentID) {
-		this.networkParentID = networkParentID;
-	}
+	
 	
 	@Override
 	public String toString(){
-		return getNetworkID() + ", " + getNetworkName() + ", " + getNetworkParentID();
+		return getNetworkID() + ", " + getNetworkName();
 	}
 }

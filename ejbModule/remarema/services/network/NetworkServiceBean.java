@@ -35,11 +35,17 @@ public class NetworkServiceBean {
     }
     
     public Network createNetwork(CreateNetworkParameter parameterObject){
-    	Network nw = new Network(parameterObject.networkID);
-    	nw.setNetworkName(parameterObject.networkName);
-    	nw.setNetworkParentID(parameterObject.networkParentID);
+    	Network nw = new Network(parameterObject.networkName);
     	em.persist(nw);
     	return nw;	
+    }
+    
+    public void networkUpdate(int networkID, String networkName, int networkParentID){
+    	Network nw = em.find(Network.class, networkID );
+    	em.getTransaction().begin();
+    	nw.setNetworkName(networkName);
+    	
+    	em.getTransaction().commit();
     }
     
     public void removeNetwork(RemoveNetworkParameter parameterObject){
@@ -81,8 +87,7 @@ public class NetworkServiceBean {
     	
     	for(int i = 1; i < networkAnzahl; i++){
     		networksString[i][0][0] = Integer.toString(networkList.get((i-1)).getNetworkID());
-        	networksString[i][i][0] = networkList.get((i-1)).getNetworkName();
-        	networksString[i][i][i] = Integer.toString(networkList.get((i-1)).getNetworkParentID());	
+        	networksString[i][i][0] = networkList.get((i-1)).getNetworkName();	
     	}
     	return networksString;
     	

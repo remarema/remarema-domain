@@ -5,9 +5,7 @@ public class CreateNetworkParameter {
 	public String networkName;
 	public int networkParentID;
 
-	public CreateNetworkParameter(String networkName,
-			int networkParentID) {
+	public CreateNetworkParameter(String networkName) {
 		this.networkName = networkName;
-		this.networkParentID = networkParentID;
 	}
 }

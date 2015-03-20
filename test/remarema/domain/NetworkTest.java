@@ -29,14 +29,14 @@ public class NetworkTest {
 	@Test
 	public void a_erstelleNetwork1(){
 		entityManager.getTransaction().begin();
-		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkA", 1));
+		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkA"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + nw);
 	}
 	@Test
 	public void b_erstelleNetwork2(){
 		entityManager.getTransaction().begin();
-		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkB", 1));
+		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkB"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + nw);
 	}
