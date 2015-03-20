@@ -9,10 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import remarema.domain.Network;
 import remarema.domain.Node;
 
 /**
- * Session Bean implementation class NodesPersistentBean
+ * Die Klasse <code>NodeServiceBean</code> stellt Methoden für die Verwaltung von Clients bereit.
+ * 
+ *  @author Rebecca vanLangelaan
+ * 
  */
 @Stateless
 @LocalBean
@@ -21,22 +25,34 @@ public class NodeServiceBean {
 	@PersistenceContext
 	protected EntityManager em;
 
+	
     /**
-     * Default constructor. 
+     * EJB default constructor. 
      */
+	public NodeServiceBean(){
+	}
+	
     public NodeServiceBean(EntityManager em) {
     	this.em = em;
     }
 
     public Node createNode(CreateNodeParameter parameterObject){
-		Node n = new Node(parameterObject.nodeID);
-		n.setNodeName(parameterObject.nodeName);
-		n.setNodeNetworkID(parameterObject.nodeNetworkID);
+    	Network network = em.find(Network.class, parameterObject.nodeNetworkID);
+		Node n = new Node(network,parameterObject.nodeName);
 		n.setNodeIP(parameterObject.nodeIP);
-		n.setSoftwareVersion(parameterObject.softwareVersion);
 		em.persist(n);
 		return n;
 	}
+    
+    public void nodeUpdate(int nodeID, String nodeName, String nodeIP, int nodeNetworkID){
+    	Node n = em.find(Node.class, nodeID );
+    	em.getTransaction().begin();
+    	n.setNodeName(nodeName);
+    	n.setNodeIP(nodeIP);
+    	Network network = em.find(Network.class, nodeNetworkID);
+    	n.setNetwork(network);
+    	em.getTransaction().commit();
+    }
 
 	public void removeNode(RemoveNodeParameter parameterObject){
 		Node n = findNode(new FindNodeParameter(parameterObject.nodeID));
@@ -76,12 +92,5 @@ public class NodeServiceBean {
     	return nodesString;
     }
     
-    public void nodeUpdate(int nodeID, String nodeName, String nodeIP, int nodeNetworkID){
-    	Node n = em.find(Node.class, nodeID );
-    	em.getTransaction().begin();
-    	n.setNodeName(nodeName);
-    	n.setNodeIP(nodeIP);
-    	n.setNodeNetworkID(nodeNetworkID);
-    	em.getTransaction().commit();
-    }
+    
 }

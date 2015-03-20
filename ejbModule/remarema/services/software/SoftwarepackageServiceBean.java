@@ -11,10 +11,9 @@ import javax.ejb.Stateless;
 public class SoftwarepackageServiceBean {
 
     /**
-     * Default constructor. 
+     * EJB default constructor. 
      */
     public SoftwarepackageServiceBean() {
-        // TODO Auto-generated constructor stub
     }
 
 }

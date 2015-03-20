@@ -9,7 +9,7 @@
 		<class>remarema.domain.Deploy</class>
 		<class>remarema.domain.Softwarepackage</class>
 		<class>remarema.domain.Softwareversion</class>
-		<!--<class>remarema.domain.Settings</class>  -->
+		<class>remarema.domain.Settings</class>
 		
 		<properties>
 

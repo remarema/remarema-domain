@@ -23,14 +23,14 @@ public class NodeTest {
 	@Test
 	public void a_erstelleNode(){
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(new CreateNodeParameter(0, "Client001", "NetworkA", "192.168.1.1", "1.0"));
+		n = serviceNode.createNode(new CreateNodeParameter("Client001", 1 , "192.168.1.1"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}
 	@Test
 	public void b_erstelleNode2(){
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(new CreateNodeParameter(0, "Client002", "NetworkB", "192.168.1.1", "1.0"));
+		n = serviceNode.createNode(new CreateNodeParameter("Client002", 2, "192.168.1.1"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}

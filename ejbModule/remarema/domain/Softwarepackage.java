@@ -31,7 +31,7 @@ public class Softwarepackage implements Serializable{
 	private String softwarepackageName;
 	
 	
-	/*
+
 	@OneToMany(mappedBy = "softwarepackage", fetch = FetchType.LAZY)
 	private Set<Softwareversion> softwareversions;
 	
@@ -41,7 +41,6 @@ public class Softwarepackage implements Serializable{
 	public void setSoftwareversion(Set<Softwareversion> softwareversions){
 		this.softwareversions = softwareversions;
 	}
-	*/
 	
 	
 	

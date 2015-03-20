@@ -41,7 +41,7 @@ public class JPASetup {
 		properties.put("openjpa.jdbc.DBDictionary", "mysql");
 
 		properties.put("openjpa.jdbc.SynchronizeMappings",
-				"buildSchema(SchemaAction='createDB,add',ForeignKeys=true)");
+				"buildSchema(SchemaAction='drop,createDB,add',ForeignKeys=true)");
 
 		return Persistence.createEntityManagerFactory("openjpa", properties);
 	}

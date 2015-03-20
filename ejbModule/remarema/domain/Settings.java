@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="settings")
+@Table (name="tsettings")
 public class Settings implements Serializable{
 	
 	/**
@@ -20,7 +20,7 @@ public class Settings implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name="primaryKey")
+	@Column(name="pk")
 	private int primaryKey;
 	
 	@Column(name="timeToLive")

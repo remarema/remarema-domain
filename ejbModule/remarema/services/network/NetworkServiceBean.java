@@ -23,6 +23,13 @@ public class NetworkServiceBean {
 	@PersistenceContext
 	protected EntityManager em;
 	
+	/**
+	 * EJB default constructor
+	 */
+	public NetworkServiceBean(){
+		
+	}
+	
     public NetworkServiceBean(EntityManager em) {
         this.em = em;
     }

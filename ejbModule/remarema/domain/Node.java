@@ -29,18 +29,17 @@ public class Node implements Serializable{
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name="nodeID")
 	private int nodeID;
+	
 	@Column(name="nodeName")
 	private String nodeName;
-	@Column (name="nodeNetworkID")
-	private int nodeNetworkID;
 	@Column (name="nodeIP")
 	private String nodeIP;
 	@Column (name="softwareVersion")
 	private String softwareVersion;
 	
-	/*
 	
-	@JoinColumn(name="networks_networkID", referencedColumnName = "networks_networkID")
+	
+	@JoinColumn(name="networks_networkID", referencedColumnName = "networkID")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Network network;
 	
@@ -69,9 +68,9 @@ public class Node implements Serializable{
 	
 	@ManyToMany
 	@JoinTable(name="deploy_has_nodes", 
-			joinColumns = @JoinColumn(name="deploy_deployID", referencedColumnName="deployID"),
+			joinColumns = @JoinColumn(name="nodes_nodeID", referencedColumnName = "nodeID"),
 			inverseJoinColumns=@JoinColumn(
-					name="nodes_nodeID", referencedColumnName="nodeID"))
+					name="deploy_deployID", referencedColumnName = "deployID"))
 	private Set<Deploy> deploy;
 	
 	public Set<Deploy> getDeploy(){
@@ -81,31 +80,24 @@ public class Node implements Serializable{
 		this.deploy = deploy;
 	}
 	
-	*/
+
 	
 	public Node(){
 	}
 	
-	public Node(int nodeID){
-		this.nodeID = nodeID;
+	public Node(Network network, String nodeName){
+		this.network = network;
+		this.nodeName = nodeName;
 	}
 	public int getID(){
 		return nodeID;
 	}
-	public void setID(int nodeID){
-		this.nodeID = nodeID;
-	}
+
 	public String getNodeName() {
 		return nodeName;
 	}
 	public void setNodeName(String nodeName) {
 		this.nodeName = nodeName;
-	}
-	public int getNodeNetworkID(){
-		return nodeNetworkID;
-	}
-	public void setNodeNetworkID(int nodeNetworkID){
-		this.nodeNetworkID = nodeNetworkID;
 	}
 	public String getNodeIP(){
 		return nodeIP;

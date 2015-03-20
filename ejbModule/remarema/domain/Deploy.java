@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -31,8 +32,8 @@ public class Deploy implements Serializable{
 	@Column (name="installationDateTime")
 	private String installationDateTime;
 	
-	/*
 	@ManyToMany
+	@JoinTable(name="deploy_has_nodes")
 	Set<Node> nodes;
 	public Set<Node> getNode(){
 		return nodes;
@@ -40,7 +41,7 @@ public class Deploy implements Serializable{
 	public void setNode(Set<Node> nodes){
 		this.nodes = nodes;
 	}
-	*/
+
 
 	public int getDeployID() {
 		return deployID;

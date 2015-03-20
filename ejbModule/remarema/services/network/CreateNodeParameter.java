@@ -13,8 +13,4 @@ public class CreateNodeParameter {
 		this.nodeNetworkID = nodeNetworkID;
 		this.nodeIP = nodeIP;
 	}
-	
-	public void setSoftwareVersion(String softwareVersion) {
-		this.softwareVersion = softwareVersion;
-	}
 }

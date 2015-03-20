@@ -11,10 +11,10 @@ import javax.ejb.Stateless;
 public class SettingsServiceBean {
 
     /**
-     * Default constructor. 
+     * EJB default constructor. 
      */
     public SettingsServiceBean() {
-        // TODO Auto-generated constructor stub
+        
     }
 
 }

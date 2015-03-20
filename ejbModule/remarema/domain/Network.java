@@ -49,7 +49,7 @@ public class Network implements Serializable{
 	private int networkParentID;
 	
 	
-	/*
+	
 	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY)
 	private Set<Node> nodes;
 	
@@ -60,7 +60,7 @@ public class Network implements Serializable{
 	public void setNode(Set<Node> nodes){
 		this.nodes = nodes;
 	}
-	*/
+	
 	
 	public Network(){
 	}
