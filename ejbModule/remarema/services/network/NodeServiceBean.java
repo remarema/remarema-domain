@@ -1,4 +1,4 @@
-package remarema.services;
+package remarema.services.network;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,25 +28,25 @@ public class NodeServiceBean {
     	this.em = em;
     }
 
-    public Node createNode(int nodeID, String nodeName, String nodeNetwork, String nodeIP, String softwareVersion){
-		Node n = new Node(nodeID);
-		n.setNodeName(nodeName);
-		n.setNodeNetwork(nodeNetwork);
-		n.setNodeIP(nodeIP);
-		n.setSoftwareVersion(softwareVersion);
+    public Node createNode(CreateNodeParameter parameterObject){
+		Node n = new Node(parameterObject.nodeID);
+		n.setNodeName(parameterObject.nodeName);
+		n.setNodeNetworkID(parameterObject.nodeNetworkID);
+		n.setNodeIP(parameterObject.nodeIP);
+		n.setSoftwareVersion(parameterObject.softwareVersion);
 		em.persist(n);
 		return n;
 	}
 
-	public void removeNode(int nodeID){
-		Node n = findNode(nodeID);
+	public void removeNode(RemoveNodeParameter parameterObject){
+		Node n = findNode(new FindNodeParameter(parameterObject.nodeID));
 		if(n != null){
 			em.remove(n);
 		}
 	}
 
-	public Node findNode(int nodeID) {
-		return em.find(Node.class, nodeID);
+	public Node findNode(FindNodeParameter parameterObject) {
+		return em.find(Node.class, parameterObject.nodeID);
 	}
 	
 	public List<Node> findAllNodes(){
@@ -74,5 +74,14 @@ public class NodeServiceBean {
         	nodesString[i][i][i] = nodeList.get((i-1)).getNodeIP();	
     	}
     	return nodesString;
+    }
+    
+    public void nodeUpdate(int nodeID, String nodeName, String nodeIP, int nodeNetworkID){
+    	Node n = em.find(Node.class, nodeID );
+    	em.getTransaction().begin();
+    	n.setNodeName(nodeName);
+    	n.setNodeIP(nodeIP);
+    	n.setNodeNetworkID(nodeNetworkID);
+    	em.getTransaction().commit();
     }
 }

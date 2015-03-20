@@ -1,4 +1,4 @@
-package remarema.services;
+package remarema.services.network;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,23 +27,23 @@ public class NetworkServiceBean {
         this.em = em;
     }
     
-    public Network createNetwork(int networkID, String networkName, String networkIP){
-    	Network nw = new Network(networkID);
-    	nw.setNetworkName(networkName);
-    	nw.setNetworkIP(networkIP);
+    public Network createNetwork(CreateNetworkParameter parameterObject){
+    	Network nw = new Network(parameterObject.networkID);
+    	nw.setNetworkName(parameterObject.networkName);
+    	nw.setNetworkParentID(parameterObject.networkParentID);
     	em.persist(nw);
     	return nw;	
     }
     
-    public void removeNetwork(int networkID){
-		Network nw = findNetwork(networkID);
+    public void removeNetwork(RemoveNetworkParameter parameterObject){
+		Network nw = findNetwork(new FindNetworkParameter(parameterObject.networkID));
 		if(nw != null){
 			em.remove(nw);
 		}
 	}
     
-    public Network findNetwork(int networkID) {
-		return em.find(Network.class, networkID);
+    public Network findNetwork(FindNetworkParameter parameterObject) {
+		return em.find(Network.class, parameterObject.networkID);
 	}
     
     public List<Network> findAllNetworks(){
@@ -75,7 +75,7 @@ public class NetworkServiceBean {
     	for(int i = 1; i < networkAnzahl; i++){
     		networksString[i][0][0] = Integer.toString(networkList.get((i-1)).getNetworkID());
         	networksString[i][i][0] = networkList.get((i-1)).getNetworkName();
-        	networksString[i][i][i] = networkList.get((i-1)).getNetworkIP();	
+        	networksString[i][i][i] = Integer.toString(networkList.get((i-1)).getNetworkParentID());	
     	}
     	return networksString;
     	

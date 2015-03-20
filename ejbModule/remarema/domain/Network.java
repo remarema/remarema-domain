@@ -45,8 +45,8 @@ public class Network implements Serializable{
 	@Column(name="networkName")
 	private String networkName;
 	
-	@Column (name="networkIP")
-	private String networkIP;
+	@Column (name="networkParentID")
+	private int networkParentID;
 	
 	
 	/*
@@ -93,16 +93,16 @@ public class Network implements Serializable{
 		this.networkName = networkName;
 	}
 
-	public String getNetworkIP() {
-		return networkIP;
+	public int getNetworkParentID() {
+		return networkParentID;
 	}
 
-	public void setNetworkIP(String networkIP) {
-		this.networkIP = networkIP;
+	public void setNetworkParentID(int networkParentID) {
+		this.networkParentID = networkParentID;
 	}
 	
 	@Override
 	public String toString(){
-		return getNetworkID() + ", " + getNetworkName() + ", " + getNetworkIP();
+		return getNetworkID() + ", " + getNetworkName() + ", " + getNetworkParentID();
 	}
 }

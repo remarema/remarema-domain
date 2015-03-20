@@ -1,19 +1,19 @@
-package remarema.services;
+package remarema.services.settings;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 /**
- * Session Bean implementation class DeployServiceBean
+ * Session Bean implementation class SettingsServiceBean
  */
 @Stateless
 @LocalBean
-public class DeployServiceBean {
+public class SettingsServiceBean {
 
     /**
      * Default constructor. 
      */
-    public DeployServiceBean() {
+    public SettingsServiceBean() {
         // TODO Auto-generated constructor stub
     }
 

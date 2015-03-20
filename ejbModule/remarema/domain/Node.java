@@ -31,8 +31,8 @@ public class Node implements Serializable{
 	private int nodeID;
 	@Column(name="nodeName")
 	private String nodeName;
-	@Column (name="nodeNetwork")
-	private String nodeNetwork;
+	@Column (name="nodeNetworkID")
+	private int nodeNetworkID;
 	@Column (name="nodeIP")
 	private String nodeIP;
 	@Column (name="softwareVersion")
@@ -101,11 +101,11 @@ public class Node implements Serializable{
 	public void setNodeName(String nodeName) {
 		this.nodeName = nodeName;
 	}
-	public String getNodeNetwork(){
-		return nodeNetwork;
+	public int getNodeNetworkID(){
+		return nodeNetworkID;
 	}
-	public void setNodeNetwork(String nodeNetwork){
-		this.nodeNetwork = nodeNetwork;
+	public void setNodeNetworkID(int nodeNetworkID){
+		this.nodeNetworkID = nodeNetworkID;
 	}
 	public String getNodeIP(){
 		return nodeIP;

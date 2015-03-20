@@ -9,7 +9,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import remarema.services.NodeServiceBean;
+import remarema.services.network.CreateNodeParameter;
+import remarema.services.network.FindNodeParameter;
+import remarema.services.network.NodeServiceBean;
+import remarema.services.network.RemoveNodeParameter;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NodeTest {
@@ -20,14 +23,14 @@ public class NodeTest {
 	@Test
 	public void a_erstelleNode(){
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(0,"Client001","NetworkA", "192.168.1.1", "1.0");
+		n = serviceNode.createNode(new CreateNodeParameter(0, "Client001", "NetworkA", "192.168.1.1", "1.0"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}
 	@Test
 	public void b_erstelleNode2(){
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(0,"Client002","NetworkB", "192.168.1.1", "1.0");
+		n = serviceNode.createNode(new CreateNodeParameter(0, "Client002", "NetworkB", "192.168.1.1", "1.0"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}
@@ -40,7 +43,7 @@ public class NodeTest {
 	@Test
 	public void d_findNode(){
 		//find a specific node
-		n = serviceNode.findNode(1);
+		n = serviceNode.findNode(new FindNodeParameter(1));
 		System.out.println("Found" + n);
 	}
 	
@@ -68,7 +71,7 @@ public class NodeTest {
 	@Test
 	public void g_loesche_Node(){
 		entityManager.getTransaction().begin();
-		serviceNode.removeNode(1);
+		serviceNode.removeNode(new RemoveNodeParameter(1));
 		entityManager.getTransaction().commit();
 		System.out.println("Removed Node 1");
 	}

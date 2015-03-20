@@ -1,4 +1,4 @@
-package remarema.services;
+package remarema.services.software;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

@@ -9,7 +9,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import remarema.services.NetworkServiceBean;
+import remarema.services.network.CreateNetworkParameter;
+import remarema.services.network.FindNetworkParameter;
+import remarema.services.network.NetworkServiceBean;
+import remarema.services.network.RemoveNetworkParameter;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class NetworkTest {
@@ -26,14 +29,14 @@ public class NetworkTest {
 	@Test
 	public void a_erstelleNetwork1(){
 		entityManager.getTransaction().begin();
-		nw = serviceNetwork.createNetwork(0, "NetworkA", "192.168.1.100");
+		nw = serviceNetwork.createNetwork(new CreateNetworkParameter(0, "NetworkA", "192.168.1.100"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + nw);
 	}
 	@Test
 	public void b_erstelleNetwork2(){
 		entityManager.getTransaction().begin();
-		nw = serviceNetwork.createNetwork(0, "NetworkB", "192.168.20.1");
+		nw = serviceNetwork.createNetwork(new CreateNetworkParameter(0, "NetworkB", "192.168.20.1"));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + nw);
 	}
@@ -51,7 +54,7 @@ public class NetworkTest {
 
 	@Test
 	public void d_findNetwork(){
-				nw = serviceNetwork.findNetwork(51);
+				nw = serviceNetwork.findNetwork(new FindNetworkParameter(51));
 				System.out.println("Found" + nw);
 	}
 	
@@ -77,7 +80,7 @@ public class NetworkTest {
 	@Test
 	public void g_loesche_Network(){
 		entityManager.getTransaction().begin();
-		serviceNetwork.removeNetwork(1);
+		serviceNetwork.removeNetwork(new RemoveNetworkParameter(1));
 		entityManager.getTransaction().commit();
 		System.out.println("Removed network 1");
 	}
