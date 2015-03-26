@@ -44,7 +44,7 @@ public class NetworkServiceBean {
     	Network nw = em.find(Network.class, networkID );
     	em.getTransaction().begin();
     	nw.setNetworkName(networkName);
-    	
+    	//networkParentID
     	em.getTransaction().commit();
     }
     

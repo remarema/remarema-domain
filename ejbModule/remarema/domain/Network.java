@@ -2,6 +2,7 @@ package remarema.domain;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -46,14 +47,16 @@ public class Network implements Serializable{
 	
 	
 	//SELF-JOIN
-	@ManyToOne
-	@JoinColumn(name="networkParentID")
-	private Network networkParent;
+	@ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name="networkParentID", referencedColumnName = "networkID")
+	private Network parent;
 	
-	@OneToMany(mappedBy = "networkParentID")
-	private Set<Network> network;
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+	private List<Network> children;
 	
-	
+	public Network getNetworkParentID(){
+		return parent;
+	}
 	
 	
 	
