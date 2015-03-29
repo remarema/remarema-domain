@@ -10,10 +10,10 @@ import javax.ejb.Stateless;
 @LocalBean
 public class DeployServiceBean {
 
-    /**
-     * EJB default constructor. 
-     */
+    
     public DeployServiceBean() {
     }
+    
+    
 
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import remarema.services.network.CreateNodeParameter;
+import remarema.services.network.FindNodeNameParameter;
 import remarema.services.network.FindNodeParameter;
 import remarema.services.network.NodeServiceBean;
 import remarema.services.network.RemoveNodeParameter;
@@ -23,14 +24,14 @@ public class NodeTest {
 	@Test
 	public void a_erstelleNode(){
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(new CreateNodeParameter("Client001", 1 , "192.168.1.1"));
+		n = serviceNode.createNode(new CreateNodeParameter("Client001","192.168.1.1", 1));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}
 	@Test
 	public void b_erstelleNode2(){
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(new CreateNodeParameter("Client002", 2, "192.168.1.1"));
+		n = serviceNode.createNode(new CreateNodeParameter("Client002", "192.168.1.1", 2));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}
@@ -48,6 +49,13 @@ public class NodeTest {
 	}
 	
 	@Test
+	public void d_findNodeName(){
+		String test = serviceNode.findNodeName(new FindNodeNameParameter(1));
+		System.out.println("Habe gefunden: " + test);
+		
+	}
+	
+	@Test
 	public void e_findNodes(){
 		//find all nodes
 				List<Node> nodes = serviceNode.findAllNodes();
@@ -55,6 +63,7 @@ public class NodeTest {
 					System.out.println("Found Node: " + node);
 				}
 	}
+	
 	
 	@Test
 	public void f_Nodes_Array_ausgeben(){

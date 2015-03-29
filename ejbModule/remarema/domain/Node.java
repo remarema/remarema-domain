@@ -52,6 +52,9 @@ public class Node implements Serializable{
 	}
 	
 	
+	
+	
+	
 	@ManyToMany
 	@JoinTable(name="nodes_has_softwareversion", 
 			joinColumns = @JoinColumn(name="nodes_nodeID", referencedColumnName="nodeID"),
@@ -86,9 +89,9 @@ public class Node implements Serializable{
 	public Node(){
 	}
 	
-	public Node(Network network, String nodeName){
-		this.network = network;
+	public Node(String nodeName, Network network){
 		this.nodeName = nodeName;
+		this.network = network;
 	}
 	public int getID(){
 		return nodeID;
@@ -115,9 +118,12 @@ public class Node implements Serializable{
 		this.softwareVersion = softwareVersion;
 	}
 	
+	
+	
 	@Override
 	public String toString(){
 		return getID() + ", " + getNodeName()+ ", " + getNodeIP();
 	}
+	
 } 
 

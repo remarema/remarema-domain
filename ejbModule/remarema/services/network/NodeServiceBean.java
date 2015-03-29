@@ -38,18 +38,18 @@ public class NodeServiceBean {
 
     public Node createNode(CreateNodeParameter parameterObject){
     	Network network = em.find(Network.class, parameterObject.nodeNetworkID);
-		Node n = new Node(network,parameterObject.nodeName);
+		Node n = new Node(parameterObject.nodeName, network);
 		n.setNodeIP(parameterObject.nodeIP);
 		em.persist(n);
 		return n;
 	}
     
-    public void nodeUpdate(int nodeID, String nodeName, String nodeIP, int nodeNetworkID){
-    	Node n = em.find(Node.class, nodeID );
+    public void nodeUpdate(NodeUpdateParameter parameterObject){
+    	Node n = em.find(Node.class, parameterObject.nodeID );
     	em.getTransaction().begin();
-    	n.setNodeName(nodeName);
-    	n.setNodeIP(nodeIP);
-    	Network network = em.find(Network.class, nodeNetworkID);
+    	n.setNodeName(parameterObject.nodeName);
+    	n.setNodeIP(parameterObject.nodeIP);
+    	Network network = em.find(Network.class, parameterObject.nodeNetworkID);
     	n.setNetwork(network);
     	em.getTransaction().commit();
     }
@@ -63,6 +63,11 @@ public class NodeServiceBean {
 
 	public Node findNode(FindNodeParameter parameterObject) {
 		return em.find(Node.class, parameterObject.nodeID);
+	}
+	
+	public String findNodeName(FindNodeNameParameter parameterObject){
+		Node n = em.find(Node.class, parameterObject.nodeID);
+		return n.getNodeName();
 	}
 	
 	public List<Node> findAllNodes(){
@@ -92,5 +97,6 @@ public class NodeServiceBean {
     	return nodesString;
     }
     
+   
     
 }

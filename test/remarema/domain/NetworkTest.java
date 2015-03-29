@@ -11,6 +11,7 @@ import org.junit.runners.MethodSorters;
 
 import remarema.services.network.CreateNetworkParameter;
 import remarema.services.network.FindNetworkParameter;
+import remarema.services.network.FindNodeNameParameter;
 import remarema.services.network.NetworkServiceBean;
 import remarema.services.network.RemoveNetworkParameter;
 
@@ -29,14 +30,14 @@ public class NetworkTest {
 	@Test
 	public void a_erstelleNetwork1(){
 		entityManager.getTransaction().begin();
-		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkA"));
+		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkA", 1));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + nw);
 	}
 	@Test
 	public void b_erstelleNetwork2(){
 		entityManager.getTransaction().begin();
-		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkB"));
+		nw = serviceNetwork.createNetwork(new CreateNetworkParameter("NetworkB", 2));
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + nw);
 	}
@@ -56,6 +57,12 @@ public class NetworkTest {
 	public void d_findNetwork(){
 				nw = serviceNetwork.findNetwork(new FindNetworkParameter(51));
 				System.out.println("Found" + nw);
+	}
+	
+	@Test
+	public void d_findNetworkName(){
+		String test = serviceNetwork.findNetworkName(1);
+		System.out.println("Habe gefunden: " + test);
 	}
 	
 	@Test

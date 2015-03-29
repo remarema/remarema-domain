@@ -34,16 +34,18 @@ public class NetworkServiceBean {
         this.em = em;
     }
     
+    
+    
     public Network createNetwork(CreateNetworkParameter parameterObject){
-    	Network nw = new Network(parameterObject.networkName);
+    	Network nw = new Network(parameterObject.networkName, parameterObject.networkParentID);
     	em.persist(nw);
     	return nw;	
     }
     
-    public void networkUpdate(int networkID, String networkName, int networkParentID){
-    	Network nw = em.find(Network.class, networkID );
+    public void networkUpdate(NetworkUpdateParameter parameterObject){
+    	Network nw = em.find(Network.class, parameterObject.networkID );
     	em.getTransaction().begin();
-    	nw.setNetworkName(networkName);
+    	nw.setNetworkName(parameterObject.networkName);
     	//networkParentID
     	em.getTransaction().commit();
     }
@@ -58,6 +60,12 @@ public class NetworkServiceBean {
     public Network findNetwork(FindNetworkParameter parameterObject) {
 		return em.find(Network.class, parameterObject.networkID);
 	}
+    
+    public String findNetworkName(int NetworkID){
+		Network nw = em.find(Network.class, NetworkID);
+		return nw.getNetworkName();
+	}
+	
     
     public List<Network> findAllNetworks(){
 		TypedQuery<Network> query = em.createQuery(

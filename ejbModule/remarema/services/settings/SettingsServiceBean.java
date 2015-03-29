@@ -10,11 +10,17 @@ import javax.ejb.Stateless;
 @LocalBean
 public class SettingsServiceBean {
 
-    /**
+    private int lifetime;
+
+	/**
      * EJB default constructor. 
      */
     public SettingsServiceBean() {
         
+    }
+    
+    public void updateLifetime(int lifetime){
+    	this.lifetime = lifetime;
     }
 
 }

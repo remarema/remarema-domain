@@ -45,6 +45,8 @@ public class Network implements Serializable{
 	@Column(name="networkName")
 	private String networkName;
 	
+	private int networkParentID;
+	
 	
 	//SELF-JOIN
 	@ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -59,9 +61,9 @@ public class Network implements Serializable{
 	}
 	
 	
-	
 	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY)
 	private Set<Node> nodes;
+
 	
 	public Set<Node> getNode(){
 		return nodes;
@@ -75,8 +77,9 @@ public class Network implements Serializable{
 	public Network(){
 	}
 	
-	public Network(String networkName){
+	public Network(String networkName, int networkParentID){
 		this.networkName = networkName;
+		this.networkParentID = networkParentID;
 	}
 	public int getNetworkID() {
 		return networkID;
