@@ -37,7 +37,8 @@ public class NetworkServiceBean {
     
     
     public Network createNetwork(CreateNetworkParameter parameterObject){
-    	Network nw = new Network(parameterObject.networkName, parameterObject.networkParentID);
+    	Network network = em.find(Network.class, parameterObject.networkParentID);
+    	Network nw = new Network(parameterObject.networkName, network);
     	em.persist(nw);
     	return nw;	
     }
@@ -46,7 +47,6 @@ public class NetworkServiceBean {
     	Network nw = em.find(Network.class, parameterObject.networkID );
     	em.getTransaction().begin();
     	nw.setNetworkName(parameterObject.networkName);
-    	//networkParentID
     	em.getTransaction().commit();
     }
     

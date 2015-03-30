@@ -11,6 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import remarema.domain.Network;
 import remarema.domain.Node;
@@ -27,6 +30,7 @@ public class NodeServiceBean {
 	
 	@PersistenceContext
 	protected EntityManager em;
+	private String search;
 
 	
     /**
@@ -113,11 +117,11 @@ public class NodeServiceBean {
    
    public List<String> searchNodeName(String search){
 	   Query query = em.createQuery(
-			   "SELECT n FROM Node n "
-			   + "WHERE n.nodeName = :name")
-			   .setParameter("name", search); 
-	   
-	   return query.getResultList();
+			   "SELECT n.nodeName FROM Node n WHERE n.nodeName = :nodeName")
+			   .setParameter("nodeName", search);
+	   List nodeName = query.getResultList();
+			
+	   return nodeName;
    }
     
    

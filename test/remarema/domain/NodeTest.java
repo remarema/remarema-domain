@@ -50,7 +50,7 @@ public class NodeTest {
 	
 	@Test
 	public void d_findNodeName(){
-		String test = serviceNode.findNodeName(new FindNodeNameParameter(51));
+		String test = serviceNode.findNodeName(new FindNodeNameParameter(1));
 		System.out.println("Habe gefunden: " + test);
 		
 	}
