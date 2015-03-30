@@ -57,7 +57,9 @@ public class Softwareversion implements Serializable{
 		this.softwarepackage = softwarepackage;
 	}
 	
-	
+	public Softwareversion(){
+		
+	}
 	public Softwareversion(String path, Softwarepackage packageID){
 		
 	}

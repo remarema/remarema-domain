@@ -2,11 +2,14 @@ package remarema.services.network;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import remarema.domain.Network;
@@ -50,7 +53,7 @@ public class NodeServiceBean {
     	n.setNodeName(parameterObject.nodeName);
     	n.setNodeIP(parameterObject.nodeIP);
     	Network network = em.find(Network.class, parameterObject.nodeNetworkID);
-    	n.setNetwork(network);
+    	n.setNodeNetwork(network);
     	em.getTransaction().commit();
     }
 
@@ -96,6 +99,26 @@ public class NodeServiceBean {
     	}
     	return nodesString;
     }
+    
+    
+    /*
+    public ArrayList<String> getNodesName(int start, int end){
+    	Query query = em.createNamedQuery("Nodes.findByName");
+    	query.setParameter("nodeName", );
+    	
+		return null;
+    	
+    }
+    */
+   
+   public List<String> searchNodeName(String search){
+	   Query query = em.createQuery(
+			   "SELECT n FROM Node n "
+			   + "WHERE n.nodeName = :name")
+			   .setParameter("name", search); 
+	   
+	   return query.getResultList();
+   }
     
    
     

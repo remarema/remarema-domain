@@ -41,18 +41,16 @@ public class Node implements Serializable{
 	
 	
 	@JoinColumn(name="networks_networkID", referencedColumnName = "networkID")
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Network network;
 	
-	public Network getNetwork(){
+	public Network getNodeNetwork(){
 		return network;
 	}
-	public void setNetwork(Network network){
+	public void setNodeNetwork(Network network){
 		this.network = network;
 	}
-	
-	
-	
 	
 	
 	@ManyToMany
@@ -118,8 +116,7 @@ public class Node implements Serializable{
 		this.softwareVersion = softwareVersion;
 	}
 	
-	
-	
+
 	@Override
 	public String toString(){
 		return getID() + ", " + getNodeName()+ ", " + getNodeIP();

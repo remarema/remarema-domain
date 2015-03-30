@@ -50,7 +50,7 @@ public class NodeTest {
 	
 	@Test
 	public void d_findNodeName(){
-		String test = serviceNode.findNodeName(new FindNodeNameParameter(1));
+		String test = serviceNode.findNodeName(new FindNodeNameParameter(51));
 		System.out.println("Habe gefunden: " + test);
 		
 	}
@@ -77,6 +77,7 @@ public class NodeTest {
 		}
 	}	
 
+	/*
 	@Test
 	public void g_loesche_Node(){
 		entityManager.getTransaction().begin();
@@ -84,10 +85,17 @@ public class NodeTest {
 		entityManager.getTransaction().commit();
 		System.out.println("Removed Node 1");
 	}
+	*/
 	
 	@Test
 	public void g_nodes_liste_ausgeben(){
 		f_Nodes_Array_ausgeben();
+	}
+	
+	@Test
+	public void h_suche_node_per_name(){
+		List x = serviceNode.searchNodeName("Client001");
+		System.out.println(x);
 	}
 	
 

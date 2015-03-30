@@ -55,7 +55,7 @@ public class NetworkTest {
 
 	@Test
 	public void d_findNetwork(){
-				nw = serviceNetwork.findNetwork(new FindNetworkParameter(51));
+				nw = serviceNetwork.findNetwork(new FindNetworkParameter(1));
 				System.out.println("Found" + nw);
 	}
 	
