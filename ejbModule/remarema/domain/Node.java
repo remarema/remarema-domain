@@ -18,93 +18,87 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="nodes")
-public class Node implements Serializable{
+@Table(name = "nodes")
+public class Node implements Serializable {
 	/**
 	 * 
 	 */
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
-	@Column(name="nodeID")
+	@Column(name = "nodeID")
 	private int nodeID;
-	
-	@Column(name="nodeName")
+
+	@Column(name = "nodeName")
 	private String nodeName;
-	@Column (name="nodeIP")
+	@Column(name = "nodeIP")
 	private String nodeIP;
-	@Column (name="softwareVersion")
+	@Column(name = "softwareVersion")
 	private String softwareVersion;
-	
-	
-	
-	@JoinColumn(name="networks_networkID", referencedColumnName = "networkID")
-	
+
+	@JoinColumn(name = "networks_networkID", referencedColumnName = "networkID")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Network network;
-	
-	public Network getNodeNetwork(){
+
+	public Network getNodeNetwork() {
 		return network;
 	}
-	public void setNodeNetwork(Network network){
+
+	public void setNodeNetwork(Network network) {
 		this.network = network;
 	}
-	
-	
+
 	@ManyToMany
-	@JoinTable(name="nodes_has_softwareversion", 
-			joinColumns = @JoinColumn(name="nodes_nodeID", referencedColumnName="nodeID"),
-			inverseJoinColumns=@JoinColumn(
-					name="softwareversion_softwareID", referencedColumnName="softwareID"))
+	@JoinTable(name = "nodes_has_softwareversion", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), inverseJoinColumns = @JoinColumn(name = "softwareversion_softwareID", referencedColumnName = "softwareID"))
 	private Set<Softwareversion> softwareversions;
-	
-	public Set<Softwareversion> getSoftwareversion(){
+
+	public Set<Softwareversion> getSoftwareversion() {
 		return softwareversions;
 	}
-	public void setSoftwareversion(Set<Softwareversion> softwareversions){
+
+	public void setSoftwareversion(Set<Softwareversion> softwareversions) {
 		this.softwareversions = softwareversions;
 	}
-	
-	
+
 	@ManyToMany
-	@JoinTable(name="deploy_has_nodes", 
-			joinColumns = @JoinColumn(name="nodes_nodeID", referencedColumnName = "nodeID"),
-			inverseJoinColumns=@JoinColumn(
-					name="deploy_deployID", referencedColumnName = "deployID"))
+	@JoinTable(name = "deploy_has_nodes", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), inverseJoinColumns = @JoinColumn(name = "deploy_deployID", referencedColumnName = "deployID"))
 	private Set<Deploy> deploy;
-	
-	public Set<Deploy> getDeploy(){
+
+	public Set<Deploy> getDeploy() {
 		return deploy;
 	}
-	public void setDeploy(Set<Deploy> deploy){
+
+	public void setDeploy(Set<Deploy> deploy) {
 		this.deploy = deploy;
 	}
-	
 
-	
-	public Node(){
+	public Node() {
 	}
-	
-	public Node(String nodeName, Network network){
+
+	public Node(String nodeName, Network network) {
 		this.nodeName = nodeName;
 		this.network = network;
 	}
-	public int getID(){
+
+	public int getID() {
 		return nodeID;
 	}
 
 	public String getNodeName() {
 		return nodeName;
 	}
+
 	public void setNodeName(String nodeName) {
 		this.nodeName = nodeName;
 	}
-	public String getNodeIP(){
+
+	public String getNodeIP() {
 		return nodeIP;
 	}
-	public void setNodeIP(String nodeIP){
+
+	public void setNodeIP(String nodeIP) {
 		this.nodeIP = nodeIP;
 	}
 
@@ -115,12 +109,11 @@ public class Node implements Serializable{
 	public void setSoftwareVersion(String softwareVersion) {
 		this.softwareVersion = softwareVersion;
 	}
-	
 
 	@Override
-	public String toString(){
-		return getID() + ", " + getNodeName()+ ", " + getNodeIP() + ", " + getNodeNetwork();
+	public String toString() {
+		return getID() + ", " + getNodeName() + ", " + getNodeIP() + ", "
+				+ getNodeNetwork();
 	}
-	
-} 
 
+}

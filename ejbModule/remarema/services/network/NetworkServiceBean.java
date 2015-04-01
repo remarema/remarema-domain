@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import remarema.api.NetworkDetail;
 import remarema.domain.*;
 
 
@@ -36,29 +37,29 @@ public class NetworkServiceBean {
     
     
     
-    public Network createNetwork(CreateNetworkParameter parameterObject){
+    public Network createNetwork(NetworkDetail parameterObject){
     	Network network = em.find(Network.class, parameterObject.networkParentID);
     	Network nw = new Network(parameterObject.networkName, network);
     	em.persist(nw);
     	return nw;	
     }
     
-    public void networkUpdate(NetworkUpdateParameter parameterObject){
+    public void networkUpdate(NetworkDetail parameterObject){
     	Network nw = em.find(Network.class, parameterObject.networkID );
     	em.getTransaction().begin();
     	nw.setNetworkName(parameterObject.networkName);
     	em.getTransaction().commit();
     }
     
-    public void removeNetwork(RemoveNetworkParameter parameterObject){
-		Network nw = findNetwork(new FindNetworkParameter(parameterObject.networkID));
+    public void removeNetwork(NetworkDetail parameterObject){
+		Network nw = findNetwork(new NetworkDetail(parameterObject.networkID));
 		if(nw != null){
 			em.remove(nw);
 		}
 	}
     
-    public Network findNetwork(FindNetworkParameter parameterObject) {
-		return em.find(Network.class, parameterObject.networkID);
+    public Network findNetwork(NetworkDetail networkDetail) {
+		return em.find(Network.class, networkDetail.networkID);
 	}
     
     public String findNetworkName(int NetworkID){
