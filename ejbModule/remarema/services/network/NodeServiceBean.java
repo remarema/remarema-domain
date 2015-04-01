@@ -100,28 +100,16 @@ public class NodeServiceBean {
 		}
 		return nodesString;
 	}
-
 	
 
-	public List<String> searchNodeName(String search) {
-		Query query = em.createQuery(
-				"SELECT n FROM Node n WHERE n.nodeName = ?1", Node.class)
-				.setParameter(1, search);
-		List nodeName = query.getResultList();
-
-		return nodeName;
-	}
-
-	public String findNodeName(NodeDetail parameterObject) {
+	public String getNodeDetailForNodeID(NodeDetail parameterObject) {
 		Node n = em.find(Node.class, parameterObject.nodeID);
-		return n.getNodeName();
-	}
-
-	public NodeDetail getNodeDetailForNodeID(NodeDetail parameterObject) {
-		Node n = em.find(Node.class, parameterObject.nodeID);
-		return null;
 		
-
+		Query query = em.createQuery(
+				"SELECT n FROM Node n WHERE n.nodeID =" + parameterObject.nodeID);
+		List nodes = query.getResultList();
+		return nodes.toString();
+		
 	}
 
 }

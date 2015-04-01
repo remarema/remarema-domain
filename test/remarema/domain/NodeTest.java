@@ -48,12 +48,6 @@ public class NodeTest {
 		System.out.println("Found" + n);
 	}
 
-	@Test
-	public void d_findNodeName() {
-		String test = serviceNode.findNodeName(new NodeDetail(1));
-		System.out.println("Habe gefunden: " + test);
-
-	}
 
 	@Test
 	public void e_findNodes() {
@@ -75,7 +69,6 @@ public class NodeTest {
 					+ array[i][i][0] + ", " + array[i][i][i]);
 		}
 	}
-
 	
 	 @Test 
 	 public void g_loesche_Node(){
@@ -91,10 +84,12 @@ public class NodeTest {
 		f_Nodes_Array_ausgeben();
 	}
 
+
+	
 	@Test
-	public void h_suche_node_per_name() {
-		List x = serviceNode.searchNodeName("Client001");
-		System.out.println(x);
+	public void i_suche_node_per_id(){
+		String x = serviceNode.getNodeDetailForNodeID(new NodeDetail(51));
+		System.out.println(x.toString());
 	}
 
 	

@@ -3,6 +3,7 @@ package remarema.api;
 import remarema.domain.Node;
 
 public class NodeDetail {
+
 	public int nodeID;
 	public String nodeName;
 	public String nodeIP;
@@ -30,6 +31,10 @@ public class NodeDetail {
 		this.nodeName = nodeName;
 		this.nodeIP = nodeIP;
 		this.nodeNetworkID = nodeNetworkID;
+	}
+	
+	public int getNodeID() {
+		return nodeID;
 	}
 
 	
@@ -59,7 +64,7 @@ public class NodeDetail {
 
 	@Override
 	public String toString() {
-		return getNodeName() + ", " + getNodeIP() + ", " + getNodeNetworkID();
+		return getNodeID() +", " + getNodeName() + ", " + getNodeIP() + ", " + getNodeNetworkID();
 	}
 
 }

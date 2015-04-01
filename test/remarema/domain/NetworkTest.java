@@ -23,7 +23,6 @@ public class NetworkTest {
 		
 	}
 	
-	
 	@Test
 	public void a_erstelleNetwork1(){
 		entityManager.getTransaction().begin();
