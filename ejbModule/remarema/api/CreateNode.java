@@ -1,19 +1,40 @@
 package remarema.api;
 
-public class CreateNode {
-	public int nodeID;
-	public String nodeName;
-	public String nodeNetwork;
-	public String nodeIP;
-	public String softwareVersion;
+import javax.validation.constraints.NotNull;
 
-	public CreateNode(int nodeID, String nodeName, String nodeNetwork,
-			String nodeIP, String softwareVersion) {
-		this.nodeID = nodeID;
+public class CreateNode {
+
+	@NotNull
+	private String nodeName;
+	
+	@NotNull
+	private String nodeIP;
+	
+	@NotNull
+	private String nodeNetworkName;
+	
+	public String getNodeName() {
+		return nodeName;
+	}
+
+	public void setNodeName(String nodeName) {
 		this.nodeName = nodeName;
-		this.nodeNetwork = nodeNetwork;
+	}
+
+	public String getNodeIP() {
+		return nodeIP;
+	}
+
+	public void setNodeIP(String nodeIP) {
 		this.nodeIP = nodeIP;
-		this.softwareVersion = softwareVersion;
+	}
+
+	public String getNodeNetworkName() {
+		return nodeNetworkName;
+	}
+
+	public void setNodeNetworkName(String nodeNetworkName) {
+		this.nodeNetworkName = nodeNetworkName;
 	}
 	
 	
