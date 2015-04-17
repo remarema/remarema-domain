@@ -37,6 +37,7 @@ public class Node implements Serializable {
 	private String nodeIP;
 	@Column(name = "softwareVersion")
 	private String softwareVersion;
+	
 
 	@JoinColumn(name = "networks_networkID", referencedColumnName = "networkID")
 	@ManyToOne(fetch = FetchType.LAZY)

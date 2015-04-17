@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import remarema.api.CreateNode;
 import remarema.api.NodeDetail;
 import remarema.domain.Network;
 import remarema.domain.Node;
@@ -45,14 +46,27 @@ public class NodeServiceBean {
 		this.em = em;
 	}
 
-	public Node createNode(NodeDetail parameterObject) {
-		Network network = em.find(Network.class,
-				parameterObject.getNodeNetworkID());
-		Node n = new Node(parameterObject.getNodeName(), network);
-		n.setNodeIP(parameterObject.getNodeIP());
+	public void execute(CreateNode command) {
+		String nodeNetworkName = command.getNodeNetworkName();
+		Network nodeNetwork = findNodeNetwork(nodeNetworkName);
+		
+		Node n = new Node(command.getNodeName(), nodeNetwork);
+		n.setNodeIP(command.getNodeIP());
 		em.persist(n);
-		return n;
 	}
+	
+	private Network findNodeNetwork(String nodeNetworkName){
+		if (nodeNetworkName == null) {
+			return null;
+		}
+		TypedQuery<Network> query = em.createQuery(
+				"select o from Network WHERE o.networkName = :name",
+				Network.class);
+		
+		query.setParameter("name", nodeNetworkName);
+		return query.getSingleResult();
+	}
+	
 
 	public void nodeUpdate(NodeDetail parameterObject) {
 		Node n = em.find(Node.class, parameterObject.getNodeID());
