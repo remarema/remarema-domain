@@ -48,6 +48,39 @@ public class NetworkServiceBean {
 		query.setParameter("name", parentNetworkName);
 		return query.getSingleResult();
 	}
+	
+	
+	public List<NetworkDetail> getNetworkDetailForAllNetworks(){
+		List<Network> results = loadNetworks();
+		return mapNetworksToNetworkDetail(results);
+		
+	}
+
+	private List<NetworkDetail> mapNetworksToNetworkDetail(List<Network> results) {
+		List<NetworkDetail> networkDetail = null;
+		
+		for(Network result : results){
+			NetworkDetail detail = new NetworkDetail();
+			
+			detail.setNetworkID(result.getNetworkID());
+			detail.setNetworkName(result.getNetworkName());
+			detail.setNetworkParentID(result.getNetworkID());
+			
+			networkDetail.add(detail);
+		
+		}
+		return networkDetail;
+	}
+
+	private List<Network> loadNetworks() {
+		TypedQuery<Network> query = em.createQuery(
+				"SELECT o FROM Network o", Network.class);
+		
+		List<Network> results = query.getResultList();
+		return results;
+	}
+	
+	
 
 	public void networkUpdate(NetworkDetail parameterObject) {
 		Network nw = em.find(Network.class, parameterObject.networkID);
@@ -56,12 +89,14 @@ public class NetworkServiceBean {
 		em.getTransaction().commit();
 	}
 
+	/*
 	public void removeNetwork(NetworkDetail parameterObject) {
 		Network nw = findNetwork(new NetworkDetail(parameterObject.networkID));
 		if (nw != null) {
 			em.remove(nw);
 		}
 	}
+	*/
 
 	public Network findNetwork(NetworkDetail networkDetail) {
 		return em.find(Network.class, networkDetail.networkID);
@@ -102,7 +137,6 @@ public class NetworkServiceBean {
 			networksString[i][i][0] = networkList.get((i - 1)).getNetworkName();
 		}
 		return networksString;
-
 	}
 
 }

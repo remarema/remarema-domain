@@ -52,6 +52,7 @@ public class NodeServiceBean {
 		
 		Node n = new Node(command.getNodeName(), nodeNetwork);
 		n.setNodeIP(command.getNodeIP());
+		nodeNetwork.getNode().add(n);
 		em.persist(n);
 	}
 	
@@ -60,7 +61,7 @@ public class NodeServiceBean {
 			return null;
 		}
 		TypedQuery<Network> query = em.createQuery(
-				"select o from Network WHERE o.networkName = :name",
+				"select o from Network o WHERE o.networkName = :name",
 				Network.class);
 		
 		query.setParameter("name", nodeNetworkName);

@@ -36,6 +36,4 @@ public class CreateNode {
 	public void setNodeNetworkName(String nodeNetworkName) {
 		this.nodeNetworkName = nodeNetworkName;
 	}
-	
-	
 }

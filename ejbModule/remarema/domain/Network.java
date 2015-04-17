@@ -52,18 +52,14 @@ public class Network implements Serializable{
 	@JoinColumn(name="networkParentID", referencedColumnName = "networkID")
 	private Network parent;
 
-	
-	
 	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	private List<Network> children;
 	
-
 	
 	
 	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY)
 	private Set<Node> nodes;
 
-	
 	public Set<Node> getNode(){
 		return nodes;
 	}

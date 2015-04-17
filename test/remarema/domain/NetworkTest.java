@@ -37,17 +37,7 @@ public class NetworkTest {
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + nw);
 	}
-	
-	
-	@Test
-	public void c_test() {
-		entityManager.find(Node.class, 1);
-		entityManager.find(Network.class,1);
-		entityManager.find(Deploy.class,1);
-		entityManager.find(Softwarepackage.class,1);
-		entityManager.find(Softwareversion.class,1);
-		//entityManager.find(Settings.class,1);
-	}
+
 
 	@Test
 	public void d_findNetwork(){
