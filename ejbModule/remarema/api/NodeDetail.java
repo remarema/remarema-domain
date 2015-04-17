@@ -1,10 +1,7 @@
 package remarema.api;
 
-import remarema.domain.Node;
 
 public class NodeDetail {
-
-	
 
 	public int nodeID;
 	private String nodeName;
@@ -12,16 +9,14 @@ public class NodeDetail {
 	private String softwareversion;
 	private int nodeNetworkID;
 
-
-	
 	public int getNodeID() {
 		return nodeID;
 	}
+
 	public void setNodeID(int nodeID) {
 		this.nodeID = nodeID;
 	}
 
-	
 	public String getNodeName() {
 		return nodeName;
 	}
@@ -37,7 +32,7 @@ public class NodeDetail {
 	public void setNodeIP(String nodeIP) {
 		this.nodeIP = nodeIP;
 	}
-	
+
 	public String getSoftwareversion() {
 		return softwareversion;
 	}
@@ -56,7 +51,8 @@ public class NodeDetail {
 
 	@Override
 	public String toString() {
-		return getNodeID() +", " + getNodeName() + ", " + getNodeIP() + ", " + getNodeNetworkID();
+		return getNodeID() + ", " + getNodeName() + ", " + getNodeIP() + ", "
+				+ getNodeNetworkID();
 	}
 
 }
