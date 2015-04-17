@@ -4,37 +4,21 @@ import remarema.domain.Node;
 
 public class NodeDetail {
 
+	
+
 	public int nodeID;
-	public String nodeName;
-	public String nodeIP;
-	public int nodeNetworkID;
+	private String nodeName;
+	private String nodeIP;
+	private String softwareversion;
+	private int nodeNetworkID;
 
 
-	
-	public NodeDetail() {
-
-	}
-	
-	public NodeDetail(int nodeID){
-		this.nodeID = nodeID;
-	}
-	
-	public NodeDetail(int nodeID, String nodeName, String nodeIP, int nodeNetworkID){
-		this.nodeID = nodeID;
-		this.nodeName = nodeName;
-		this.nodeIP = nodeIP;
-		this.nodeNetworkID = nodeNetworkID;
-	}
-	
-	
-	public NodeDetail(String nodeName, String nodeIP, int nodeNetworkID){
-		this.nodeName = nodeName;
-		this.nodeIP = nodeIP;
-		this.nodeNetworkID = nodeNetworkID;
-	}
 	
 	public int getNodeID() {
 		return nodeID;
+	}
+	public void setNodeID(int nodeID) {
+		this.nodeID = nodeID;
 	}
 
 	
@@ -52,6 +36,14 @@ public class NodeDetail {
 
 	public void setNodeIP(String nodeIP) {
 		this.nodeIP = nodeIP;
+	}
+	
+	public String getSoftwareversion() {
+		return softwareversion;
+	}
+
+	public void setSoftwareversion(String softwareversion) {
+		this.softwareversion = softwareversion;
 	}
 
 	public int getNodeNetworkID() {

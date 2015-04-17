@@ -21,8 +21,9 @@ public class NodeTest {
 	@Test
 	public void a_erstelleNode() {
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(new NodeDetail("Client001",
-				"192.168.1.1", 1));
+		n = serviceNode.createNode(new NodeDetail());
+		n.setNodeName("Client001");
+		n.setNodeIP("192.168.1.1");
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}
@@ -30,8 +31,10 @@ public class NodeTest {
 	@Test
 	public void b_erstelleNode2() {
 		entityManager.getTransaction().begin();
-		n = serviceNode.createNode(new NodeDetail("Client002",
-				"192.168.1.1", 2));
+		n = serviceNode.createNode(new NodeDetail());
+		n.setNodeName("Client002");
+		n.setNodeIP("10.0.0.1");
+		n.setNodeNetwork(null);
 		entityManager.getTransaction().commit();
 		System.out.println("Persisted " + n);
 	}
@@ -44,7 +47,9 @@ public class NodeTest {
 	@Test
 	public void d_findNode() {
 		// find a specific node
-		n = serviceNode.findNode(new NodeDetail(1));
+		NodeDetail nd = new NodeDetail();
+		nd.setNodeID(1);
+		n = serviceNode.findNode(nd);
 		System.out.println("Found" + n);
 	}
 
@@ -73,9 +78,11 @@ public class NodeTest {
 	 @Test 
 	 public void g_loesche_Node(){
 		 entityManager.getTransaction().begin(); 
-		 serviceNode.removeNode(new NodeDetail(1)); 
+		 NodeDetail nd = new NodeDetail();
+		 nd.setNodeID(51);
+		 serviceNode.removeNode(nd); 
 		 entityManager.getTransaction().commit();
-		 System.out.println("Removed Node 1"); 
+		 System.out.println("Removed Node 51"); 
 	 }
 	 
 
@@ -88,9 +95,17 @@ public class NodeTest {
 	
 	@Test
 	public void i_suche_node_per_id(){
-		String x = serviceNode.getNodeDetailForNodeID(new NodeDetail(51));
-		System.out.println(x.toString());
+		NodeDetail nd = new NodeDetail();
+		nd.setNodeID(52);
+		
+		serviceNode.getNodeDetailForNodeID(nd);
+		System.out.println(nd);
 	}
+	
+	
+	
+	
+	
 
 	
 
