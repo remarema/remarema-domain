@@ -3,7 +3,7 @@
 
 	<Resource id="remarema" type="DataSource">
 		JdbcDriver com.mysql.jdbc.Driver
-		JdbcUrl jdbc:mysql://localhost:3306/remarema
+		JdbcUrl jdbc:mysql://localhost:3306/remaremadb
 		UserName root
 	</Resource>
 
