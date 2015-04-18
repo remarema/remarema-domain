@@ -57,7 +57,7 @@ public class NetworkServiceBean {
 	}
 
 	private List<NetworkDetail> mapNetworksToNetworkDetail(List<Network> results) {
-		List<NetworkDetail> networkDetail = null;
+		List<NetworkDetail> networkDetail = new ArrayList<NetworkDetail>();
 		
 		for(Network result : results){
 			NetworkDetail detail = new NetworkDetail();
