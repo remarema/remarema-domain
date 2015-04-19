@@ -82,22 +82,21 @@ public class NetworkServiceBean {
 	
 	
 	public void networkUpdate(NetworkDetail parameterObject) {
-		Network nw = em.find(Network.class, parameterObject.networkID);
+		Network nw = em.find(Network.class, parameterObject.getNetworkID());
 		em.getTransaction().begin();
-		nw.setNetworkName(parameterObject.networkName);
+		nw.setNetworkName(parameterObject.getNetworkName());
 		em.getTransaction().commit();
 	}
 	
 
-	/*
 	public void removeNetwork(NetworkDetail parameterObject) {
-		Network nw = findNetwork(new NetworkDetail(parameterObject.networkID));
+		Network nw = em.find(Network.class, parameterObject.getNetworkID());
 		if (nw != null) {
 			em.remove(nw);
 		}
 	}
-	*/
 
+	/* Unnötige Methoden?
 	public Network findNetwork(NetworkDetail networkDetail) {
 		return em.find(Network.class, networkDetail.networkID);
 	}
@@ -112,12 +111,14 @@ public class NetworkServiceBean {
 				Network.class);
 		return query.getResultList();
 	}
+	*/
 
 	/**
 	 * Gibt die um 1 erhï¿½hte Anzahl der Netzwerke zurï¿½ck
 	 * 
 	 * @return Anzahl der Netzwerke
 	 */
+	/*
 	public int findAnzahlNetworks() {
 		int a = findAllNetworks().size() + 1; // +1, da wir unten in der
 												// Schleife mit 1 beginnen
@@ -138,5 +139,8 @@ public class NetworkServiceBean {
 		}
 		return networksString;
 	}
+	*/
+	
+	
 
 }

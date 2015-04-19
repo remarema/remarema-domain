@@ -69,7 +69,7 @@ public class NodeServiceBean {
 		return query.getSingleResult();
 	}
 	
-
+	
 	public void nodeUpdate(NodeDetail parameterObject) {
 		Node n = em.find(Node.class, parameterObject.getNodeID());
 		em.getTransaction().begin();
@@ -88,6 +88,7 @@ public class NodeServiceBean {
 		}
 	}
 
+	/* unnötige Methoden?
 	public Node findNode(NodeDetail parameterObject) {
 		return em.find(Node.class, parameterObject.nodeID);
 	}
@@ -119,6 +120,7 @@ public class NodeServiceBean {
 		}
 		return nodesString;
 	}
+	*/
 
 	public NodeDetail getNodeDetailForNodeID(NodeDetail parameterObject) {
 		int nodeID = parameterObject.nodeID;
