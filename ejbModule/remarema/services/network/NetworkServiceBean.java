@@ -81,13 +81,13 @@ public class NetworkServiceBean {
 	}
 	
 	
-
 	public void networkUpdate(NetworkDetail parameterObject) {
 		Network nw = em.find(Network.class, parameterObject.networkID);
 		em.getTransaction().begin();
 		nw.setNetworkName(parameterObject.networkName);
 		em.getTransaction().commit();
 	}
+	
 
 	/*
 	public void removeNetwork(NetworkDetail parameterObject) {

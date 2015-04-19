@@ -18,6 +18,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import remarema.api.CreateNode;
+import remarema.api.NetworkDetail;
 import remarema.api.NodeDetail;
 import remarema.domain.Network;
 import remarema.domain.Node;
@@ -143,6 +144,36 @@ public class NodeServiceBean {
 				"SELECT n FROM Node n WHERE n.nodeID =" + nodeID, Node.class);
 
 		return query.getSingleResult();
+	}
+	
+	public List<NodeDetail> getNodeDetailForAllNodes(){
+		
+		List<Node> results = loadAllNodes();
+		return mapNodesToNodeDetail(results);
+	}
+
+	private List<Node> loadAllNodes() {
+		TypedQuery<Node> query = em.createQuery(
+				"SELECT o FROM Node o", Node.class);
+		
+		List<Node> results = query.getResultList();
+		return results;
+	}
+	
+	private List<NodeDetail> mapNodesToNodeDetail(List<Node> results){
+		List<NodeDetail> nodeDetail = new ArrayList<NodeDetail>();
+		
+		for(Node result : results){
+			NodeDetail detail = new NodeDetail();
+			
+			detail.setNodeID(result.getID());
+			detail.setNodeName(result.getNodeName());
+			detail.setNodeIP(result.getNodeIP());
+			detail.setNodeNetworkID(result.getNodeNetwork().getNetworkID());
+			
+			nodeDetail.add(detail);
+		}
+		return nodeDetail;
 	}
 
 }
