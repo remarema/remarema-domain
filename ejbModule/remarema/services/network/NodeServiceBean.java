@@ -70,16 +70,23 @@ public class NodeServiceBean {
 		return query.getSingleResult();
 	}
 	
+	private Node findNodeByName(String nodeName){
+		TypedQuery<Node> query = em.createQuery(
+				"select o from Node o WHERE o.nodeName = :name", Node.class);
+		query.setParameter("name", nodeName);
+		return query.getSingleResult();
+	}
 
 	public void nodeUpdate(UpdateNode command) {
-		Node n = em.find(Node.class, command.getNodeID());
+		String nodeName = command.getNodeName();
+		Node node = findNodeByName(nodeName);
 		em.getTransaction().begin();
-		n.setNodeName(command.getNodeName());
-		n.setNodeIP(command.getNodeIP());
+		node.setNodeName(command.getNodeName());
+		node.setNodeIP(command.getNodeIP());
 		
 		String nodeNetworkName = command.getNodeNetworkName();
 		Network nodeNetwork = findNodeNetwork(nodeNetworkName);
-		n.setNodeNetwork(nodeNetwork);
+		node.setNodeNetwork(nodeNetwork);
 		
 		em.getTransaction().commit();
 	}
