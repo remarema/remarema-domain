@@ -20,6 +20,7 @@ import javax.persistence.criteria.Root;
 import remarema.api.CreateNode;
 import remarema.api.NetworkDetail;
 import remarema.api.NodeDetail;
+import remarema.api.UpdateNode;
 import remarema.domain.Network;
 import remarema.domain.Node;
 
@@ -69,15 +70,17 @@ public class NodeServiceBean {
 		return query.getSingleResult();
 	}
 	
-	
-	public void nodeUpdate(NodeDetail parameterObject) {
-		Node n = em.find(Node.class, parameterObject.getNodeID());
+
+	public void nodeUpdate(UpdateNode command) {
+		Node n = em.find(Node.class, command.getNodeID());
 		em.getTransaction().begin();
-		n.setNodeName(parameterObject.getNodeName());
-		n.setNodeIP(parameterObject.getNodeIP());
-		Network network = em.find(Network.class,
-				parameterObject.getNodeNetworkID());
-		n.setNodeNetwork(network);
+		n.setNodeName(command.getNodeName());
+		n.setNodeIP(command.getNodeIP());
+		
+		String nodeNetworkName = command.getNodeNetworkName();
+		Network nodeNetwork = findNodeNetwork(nodeNetworkName);
+		n.setNodeNetwork(nodeNetwork);
+		
 		em.getTransaction().commit();
 	}
 
@@ -132,6 +135,7 @@ public class NodeServiceBean {
 		nd.setNodeID(node.getID());
 		nd.setNodeName(node.getNodeName());
 		nd.setNodeIP(node.getNodeIP());
+		nd.setSoftwareversion(node.getSoftwareVersion());
 		
 		Network nodeNetwork = node.getNodeNetwork();
 		if(nodeNetwork != null ){
@@ -171,7 +175,9 @@ public class NodeServiceBean {
 			detail.setNodeID(result.getID());
 			detail.setNodeName(result.getNodeName());
 			detail.setNodeIP(result.getNodeIP());
+			detail.setSoftwareversion(result.getSoftwareVersion());
 			detail.setNodeNetworkID(result.getNodeNetwork().getNetworkID());
+			detail.setNodeNetworkName(result.getNodeNetwork().getNetworkName());
 			
 			nodeDetail.add(detail);
 		}
