@@ -74,7 +74,7 @@ public class NetworkServiceBean {
 
 	private List<Network> loadNetworks() {
 		TypedQuery<Network> query = em.createQuery(
-				"SELECT o FROM Network o", Network.class);
+				"SELECT o FROM Network o ORDER BY o.networkID", Network.class);
 		
 		List<Network> results = query.getResultList();
 		return results;

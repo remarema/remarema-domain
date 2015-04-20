@@ -63,7 +63,7 @@ public class NodeServiceBean {
 			return null;
 		}
 		TypedQuery<Network> query = em.createQuery(
-				"select o from Network o WHERE o.networkName = :name",
+				"SELECT o from Network o WHERE o.networkName = :name",
 				Network.class);
 		
 		query.setParameter("name", nodeNetworkName);
@@ -72,7 +72,7 @@ public class NodeServiceBean {
 	
 	private Node findNodeByName(String nodeName){
 		TypedQuery<Node> query = em.createQuery(
-				"select o from Node o WHERE o.nodeName = :name", Node.class);
+				"SELECT o from Node o WHERE o.nodeName = :name", Node.class);
 		query.setParameter("name", nodeName);
 		return query.getSingleResult();
 	}
@@ -167,7 +167,7 @@ public class NodeServiceBean {
 
 	private List<Node> loadAllNodes() {
 		TypedQuery<Node> query = em.createQuery(
-				"SELECT o FROM Node o", Node.class);
+				"SELECT o FROM Node o ORDER BY o.nodeID", Node.class);
 		
 		List<Node> results = query.getResultList();
 		return results;
