@@ -55,6 +55,22 @@ public class Network implements Serializable{
 	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	private List<Network> children;
 	
+	public Network getParent() {
+		return parent;
+	}
+
+	public void setParent(Network parent) {
+		this.parent = parent;
+	}
+
+	public List<Network> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Network> children) {
+		this.children = children;
+	}
+	
 	
 	
 	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY)
@@ -107,4 +123,6 @@ public class Network implements Serializable{
 	public String toString(){
 		return getNetworkID() + ", " + getNetworkName();
 	}
+
+	
 }

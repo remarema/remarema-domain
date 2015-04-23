@@ -65,6 +65,7 @@ public class NetworkServiceBean {
 			detail.setNetworkID(result.getNetworkID());
 			detail.setNetworkName(result.getNetworkName());
 			detail.setNetworkParentID(result.getNetworkID());
+			//detail.setNetworkParentName(result.getParent().getNetworkName());
 			
 			networkDetail.add(detail);
 		
