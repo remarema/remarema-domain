@@ -76,11 +76,17 @@ public class NodeServiceBean {
 		query.setParameter("name", nodeName);
 		return query.getSingleResult();
 	}
+	
+	private Node findNodeByID(int nodeID){
+		TypedQuery<Node> query = em.createQuery(
+				"SELECT o from Node o WHERE o.nodeID = :id", Node.class);
+		query.setParameter("id", nodeID);
+		return query.getSingleResult();
+	}
 
 	public void nodeUpdate(UpdateNode command) {
-		String nodeName = command.getNodeName();
-		Node node = findNodeByName(nodeName);
-		em.getTransaction().begin();
+		int nodeID = command.getNodeID();
+		Node node = findNodeByID(nodeID);
 		node.setNodeName(command.getNodeName());
 		node.setNodeIP(command.getNodeIP());
 		
@@ -88,7 +94,7 @@ public class NodeServiceBean {
 		Network nodeNetwork = findNodeNetwork(nodeNetworkName);
 		node.setNodeNetwork(nodeNetwork);
 		
-		em.getTransaction().commit();
+		em.flush();
 	}
 
 	public void removeNode(NodeDetail parameterObject) {
@@ -97,40 +103,6 @@ public class NodeServiceBean {
 			em.remove(n);
 		}
 	}
-
-	/* unnötige Methoden?
-	public Node findNode(NodeDetail parameterObject) {
-		return em.find(Node.class, parameterObject.nodeID);
-	}
-
-	public List<Node> findAllNodes() {
-		TypedQuery<Node> query = em.createQuery("SELECT n FROM Node n",
-				Node.class);
-		return query.getResultList();
-	}
-
-	public int findAnzahlNodes() {
-		int a = findAllNodes().size() + 1; // +1, da wir unten in der Schleife
-											// mit 1 beginnen
-		return a;
-	}
-
-	public String[][][] nodesArray() {
-		List<Node> nodeList = new ArrayList<Node>();
-		nodeList = findAllNodes();
-		int nodesAnzahl = findAnzahlNodes();
-
-		String[][][] nodesString = new String[nodesAnzahl][nodesAnzahl][nodesAnzahl];
-
-		for (int i = 1; i < nodesAnzahl; i++) {
-			nodesString[i][0][0] = Integer.toString(nodeList.get((i - 1))
-					.getID());
-			nodesString[i][i][0] = nodeList.get((i - 1)).getNodeName();
-			nodesString[i][i][i] = nodeList.get((i - 1)).getNodeIP();
-		}
-		return nodesString;
-	}
-	*/
 
 	public NodeDetail getNodeDetailForNodeID(NodeDetail parameterObject) {
 		int nodeID = parameterObject.nodeID;
@@ -147,8 +119,8 @@ public class NodeServiceBean {
 		Network nodeNetwork = node.getNodeNetwork();
 		if(nodeNetwork != null ){
 			nd.setNodeNetworkID(nodeNetwork.getNetworkID());
+			nd.setNodeNetworkName(nodeNetwork.getNetworkName());
 		}
-
 		return nd;
 	}
 
@@ -167,7 +139,7 @@ public class NodeServiceBean {
 
 	private List<Node> loadAllNodes() {
 		TypedQuery<Node> query = em.createQuery(
-				"SELECT o FROM Node o ORDER BY o.nodeID", Node.class);
+				"SELECT o FROM Node o ORDER BY o.nodeName", Node.class);
 		
 		List<Node> results = query.getResultList();
 		return results;

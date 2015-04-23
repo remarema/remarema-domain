@@ -3,15 +3,15 @@ package remarema.api;
 public class UpdateNode {
 	
 	
-	private String nodeID;
+	private int nodeID;
 	private String nodeName;
 	private String nodeIP;
 	private String nodeNetworkName;
 	
-	public String getNodeID() {
+	public int getNodeID() {
 		return nodeID;
 	}
-	public void setNodeID(String nodeID) {
+	public void setNodeID(int nodeID) {
 		this.nodeID = nodeID;
 	}
 	public String getNodeName() {
