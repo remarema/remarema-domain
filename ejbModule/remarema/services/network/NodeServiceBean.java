@@ -99,9 +99,10 @@ public class NodeServiceBean {
 
 	public void removeNode(NodeDetail parameterObject) {
 		Node n = em.find(Node.class, parameterObject.getNodeID());
-		if (n != null) {
-			em.remove(n);
-		}
+		TypedQuery<Node> query = em.createQuery("DELETE o FROM Node o WHERE o.nodeID =: id"
+				, Node.class);
+		query.setParameter("id", parameterObject);
+		query.executeUpdate();
 	}
 
 	public NodeDetail getNodeDetailForNodeID(NodeDetail parameterObject) {
