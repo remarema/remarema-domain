@@ -3,14 +3,14 @@ package remarema.api;
 
 public class NodeDetail {
 
-	public int nodeID;
+	public Integer nodeID;
 	private String nodeName;
 	private String nodeIP;
 	private String softwareversion;
-	private int nodeNetworkID;
+	private Integer nodeNetworkID;
 	private String nodeNetworkName;
 
-	public int getNodeID() {
+	public Integer getNodeID() {
 		return nodeID;
 	}
 
@@ -42,7 +42,7 @@ public class NodeDetail {
 		this.softwareversion = softwareversion;
 	}
 
-	public int getNodeNetworkID() {
+	public Integer getNodeNetworkID() {
 		return nodeNetworkID;
 	}
 

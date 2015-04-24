@@ -1,44 +1,35 @@
 package remarema.api;
 
-public class NetworkDetail {
+public class UpdateNetwork {
 	
-	public Integer networkID;
-	public String networkName;
-	public Integer networkParentID;
-	public String networkParentName;
+	private int networkID;
+	private String networkName;
+	private String networkParentID;
+	private String networkParentName;
 	
-	public NetworkDetail(){
-		
-	}
-	
-	public Integer getNetworkID() {
+	public int getNetworkID() {
 		return networkID;
 	}
 	public void setNetworkID(int networkID) {
 		this.networkID = networkID;
 	}
-
 	public String getNetworkName() {
 		return networkName;
 	}
-
 	public void setNetworkName(String networkName) {
 		this.networkName = networkName;
 	}
-
-	public Integer getNetworkParentID() {
+	public String getNetworkParentID() {
 		return networkParentID;
 	}
-
-	public void setNetworkParentID(int networkParentID) {
+	public void setNetworkParentID(String networkParentID) {
 		this.networkParentID = networkParentID;
 	}
-
 	public String getNetworkParentName() {
 		return networkParentName;
 	}
-
 	public void setNetworkParentName(String networkParentName) {
 		this.networkParentName = networkParentName;
 	}
+
 }

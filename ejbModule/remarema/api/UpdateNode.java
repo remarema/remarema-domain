@@ -6,6 +6,7 @@ public class UpdateNode {
 	private int nodeID;
 	private String nodeName;
 	private String nodeIP;
+	private int nodeNetworkID;
 	private String nodeNetworkName;
 	
 	public int getNodeID() {
@@ -31,6 +32,12 @@ public class UpdateNode {
 	}
 	public void setNodeNetworkName(String nodeNetworkName) {
 		this.nodeNetworkName = nodeNetworkName;
+	}
+	public int getNodeNetworkID() {
+		return nodeNetworkID;
+	}
+	public void setNodeNetworkID(int nodeNetworkID) {
+		this.nodeNetworkID = nodeNetworkID;
 	}
 	
 

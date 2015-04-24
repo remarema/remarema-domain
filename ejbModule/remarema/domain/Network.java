@@ -1,7 +1,7 @@
 package remarema.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -12,9 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -64,16 +61,36 @@ public class Network implements Serializable{
 	}
 
 	public List<Network> getChildren() {
-		return children;
+		return  children;
+	}
+	
+	public void addChildren(Network network){
+		if(network == null ){
+			throw new IllegalArgumentException("ein Kind-Netzwerk darf nicht null sein");
+		}
+		if(children == null){
+			children = new ArrayList<Network>();
+		}
+		children.add(network);
 	}
 
 	public void setChildren(List<Network> children) {
 		this.children = children;
 	}
 	
+	public boolean hasParentNetwork(){
+		return  parent != null;
+	}
+	
+	public int getParentNetworkID(){
+		if(parent == null){
+			throw new IllegalStateException("network hat keinen parent!");
+		}
+		return parent.getNetworkID();
+	}
 	
 	
-	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Node> nodes;
 
 	public Set<Node> getNode(){
