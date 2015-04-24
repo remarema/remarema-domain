@@ -50,6 +50,17 @@ public class Node implements Serializable {
 	public void setNodeNetwork(Network network) {
 		this.network = network;
 	}
+	
+	public boolean hasNetwork(){
+		return  network != null;
+	}
+	
+	public int getNodeNetworkID(){
+		if(network == null){
+			throw new IllegalStateException("node hat kein netzwerk!");
+		}
+		return network.getNetworkID();
+	}
 
 	@ManyToMany
 	@JoinTable(name = "nodes_has_softwareversion", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), inverseJoinColumns = @JoinColumn(name = "softwareversion_softwareID", referencedColumnName = "softwareID"))

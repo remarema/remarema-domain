@@ -122,12 +122,12 @@ public class NetworkServiceBean {
 		NetworkDetail nwd = new NetworkDetail();
 		nwd.setNetworkID(network.getNetworkID());
 		nwd.setNetworkName(network.getNetworkName());
-//		
-//		Network networkParent = network.getParent();
-//		if(networkParent != null){
-//			nwd.setNetworkParentID(networkParent.getNetworkID());
-//			nwd.setNetworkParentName(networkParent.getNetworkName());
-//		}
+		
+		Network networkParent = network.getParent();
+		if(networkParent != null){
+			nwd.setNetworkParentID(networkParent.getNetworkID());
+			nwd.setNetworkParentName(networkParent.getNetworkName());
+		}
 		return nwd;
 	}
 

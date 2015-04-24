@@ -155,9 +155,13 @@ public class NodeServiceBean {
 			detail.setNodeName(result.getNodeName());
 			detail.setNodeIP(result.getNodeIP());
 			detail.setSoftwareversion(result.getSoftwareVersion());
-			detail.setNodeNetworkID(result.getNodeNetwork().getNetworkID());
-			detail.setNodeNetworkName(result.getNodeNetwork().getNetworkName());
 			
+			if(result.hasNetwork()){
+				Network nodeNetwork = result.getNodeNetwork();
+				detail.setNodeNetworkID(nodeNetwork.getNetworkID());
+				detail.setNodeNetworkName(nodeNetwork.getNetworkName());
+			}
+		
 			nodeDetail.add(detail);
 		}
 		return nodeDetail;
