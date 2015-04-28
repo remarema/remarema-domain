@@ -91,7 +91,7 @@ public class NetworkServiceBean {
 		Network nw = em.find(Network.class, command.getNetworkID());
 		nw.setNetworkName(command.getNetworkName());
 		Network parentNetwork = findParentNetwork(command.getNetworkParentName());
-		parentNetwork.setNetworkName(command.getNetworkName());
+		parentNetwork.setNetworkName(command.getNetworkParentName());
 		nw.setParent(parentNetwork);
 		em.flush();
 	}
