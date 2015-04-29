@@ -15,14 +15,14 @@ import remarema.api.UpdateNetwork;
 import remarema.domain.Network;
 
 /**
- * Session Bean implementation class NetworkServiceBean
+ * Das NetworkServiceBean stellt Methoden für die Verwaltung von Netzwerken bereit.
  */
 @Stateless
 @LocalBean
 public class NetworkServiceBean {
 
 	@PersistenceContext
-	protected EntityManager em;
+	private EntityManager em;
 
 	/**
 	 * EJB default constructor
@@ -31,7 +31,8 @@ public class NetworkServiceBean {
 
 	}
 
-	public NetworkServiceBean(EntityManager em) {
+	//Package-Protected; für Tests
+	NetworkServiceBean(EntityManager em) {
 		this.em = em;
 	}
 
@@ -76,7 +77,6 @@ public class NetworkServiceBean {
 				detail.setNetworkParentID(parent.getNetworkID());
 				detail.setNetworkParentName(parent.getNetworkName());
 			}
-			
 			networkDetail.add(detail);
 		
 		}
