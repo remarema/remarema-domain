@@ -2,30 +2,21 @@ package remarema.services.network;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Parameter;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 import remarema.api.CreateNode;
-import remarema.api.NetworkDetail;
 import remarema.api.NodeDetail;
 import remarema.api.UpdateNode;
 import remarema.domain.Network;
 import remarema.domain.Node;
 
 /**
- * Die Klasse <code>NodeServiceBean</code> stellt Methoden für die Verwaltung
+ * Die Klasse <code>NodeServiceBean</code> stellt Methoden fï¿½r die Verwaltung
  * von Clients bereit.
  * 
  * @author Rebecca vanLangelaan
@@ -70,12 +61,12 @@ public class NodeServiceBean {
 		return query.getSingleResult();
 	}
 	
-	private Node findNodeByName(String nodeName){
-		TypedQuery<Node> query = em.createQuery(
-				"SELECT o from Node o WHERE o.nodeName = :name", Node.class);
-		query.setParameter("name", nodeName);
-		return query.getSingleResult();
-	}
+//	private Node findNodeByName(String nodeName){
+//		TypedQuery<Node> query = em.createQuery(
+//				"SELECT o from Node o WHERE o.nodeName = :name", Node.class);
+//		query.setParameter("name", nodeName);
+//		return query.getSingleResult();
+//	}
 	
 	private Node findNodeByID(int nodeID){
 		TypedQuery<Node> query = em.createQuery(

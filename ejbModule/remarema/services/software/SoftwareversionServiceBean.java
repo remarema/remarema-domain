@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import remarema.domain.Node;
 import remarema.domain.Softwarepackage;
 import remarema.domain.Softwareversion;
 

@@ -8,6 +8,12 @@ public class UserDetail {
 	public int userRights;
 	
 	
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 	public String getUserName() {
 		return userName;
 	}
