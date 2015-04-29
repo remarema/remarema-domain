@@ -110,7 +110,7 @@ public class NetworkServiceBean {
 				em.remove(nw);
 			}
 			else{
-				throw new ChildNotEmptyException("Dieses Netzwerk beinhaltet Clients!");
+				throw new ChildNotEmptyException("Dieses Netzwerk beinhaltet Childs!");
 			}
 		}
 		else{
