@@ -43,7 +43,7 @@ public class Network implements Serializable {
 	@Column(name = "networkName")
 	private String networkName;
 
-	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "networkParentID", referencedColumnName = "networkID")
 	private Network parent;
 
