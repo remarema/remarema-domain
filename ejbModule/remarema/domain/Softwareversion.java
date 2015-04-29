@@ -15,74 +15,82 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="softwareversion")
-public class Softwareversion implements Serializable{
-	
+@Table(name = "softwareversion")
+public class Softwareversion implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name="softwareID")
+	@Column(name = "softwareID")
 	private int softwareID;
-	
-	@Column(name="versionName")
+
+	@Column(name = "versionName")
 	private String versionName;
-	
-	@Column(name="softwarePath")
+
+	@Column(name = "softwarePath")
 	private String softwarePath;
-	
+
+	public Softwareversion() {
+
+	}
 
 	@ManyToMany
-	@JoinTable(name="nodes_has_softwareversion")
+	@JoinTable(name = "nodes_has_softwareversion")
 	Set<Node> nodes;
-	
-	public Set<Node> getNode(){
+
+	public Set<Node> getNode() {
 		return nodes;
 	}
-	public void setNode(Set<Node> nodes){
+
+	public void setNode(Set<Node> nodes) {
 		this.nodes = nodes;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Softwarepackage softwarepackage;
-	
-	public Softwarepackage getSoftwarepackage(){
+
+	public Softwarepackage getSoftwarepackage() {
 		return softwarepackage;
 	}
-	public void setSoftwarepackage(Softwarepackage softwarepackage){
+
+	public void setSoftwarepackage(Softwarepackage softwarepackage) {
 		this.softwarepackage = softwarepackage;
 	}
 	
-	public Softwareversion(){
-		
+	public boolean hasPackage() {
+		return softwarepackage != null;
 	}
-	public Softwareversion(String path, Softwarepackage packageID){
-		
+
+	public int getPackageID() {
+		if (softwarepackage == null) {
+			throw new IllegalStateException("softwareversion hat kein package!");
+		}
+		return softwarepackage.getSoftwarepackageID();
 	}
-	
+
 	public int getSoftwareID() {
 		return softwareID;
 	}
+
 	public void setSoftwareID(int softwareID) {
 		this.softwareID = softwareID;
 	}
+
 	public String getVersionName() {
 		return versionName;
 	}
+
 	public void setVersionName(String versionName) {
 		this.versionName = versionName;
 	}
+
 	public String getSoftwarePath() {
 		return softwarePath;
 	}
+
 	public void setSoftwarePath(String softwarePath) {
 		this.softwarePath = softwarePath;
 	}
-	
-	
-	
+
 }

@@ -34,7 +34,6 @@ public class Node implements Serializable {
 	private String nodeIP;
 	@Column(name = "softwareVersion")
 	private String softwareVersion;
-	
 
 	@JoinColumn(name = "networks_networkID", referencedColumnName = "networkID")
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -47,20 +46,21 @@ public class Node implements Serializable {
 	public void setNodeNetwork(Network network) {
 		this.network = network;
 	}
-	
-	public boolean hasNetwork(){
-		return  network != null;
+
+	public boolean hasNetwork() {
+		return network != null;
 	}
-	
-	public int getNodeNetworkID(){
-		if(network == null){
+
+	public int getNodeNetworkID() {
+		if (network == null) {
 			throw new IllegalStateException("node hat kein netzwerk!");
 		}
 		return network.getNetworkID();
 	}
 
 	@ManyToMany
-	@JoinTable(name = "nodes_has_softwareversion", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), inverseJoinColumns = @JoinColumn(name = "softwareversion_softwareID", referencedColumnName = "softwareID"))
+	@JoinTable(name = "nodes_has_softwareversion", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), 
+		inverseJoinColumns = @JoinColumn(name = "softwareversion_softwareID", referencedColumnName = "softwareID"))
 	private Set<Softwareversion> softwareversions;
 
 	public Set<Softwareversion> getSoftwareversion() {
@@ -72,7 +72,8 @@ public class Node implements Serializable {
 	}
 
 	@ManyToMany
-	@JoinTable(name = "deploy_has_nodes", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), inverseJoinColumns = @JoinColumn(name = "deploy_deployID", referencedColumnName = "deployID"))
+	@JoinTable(name = "deploy_has_nodes", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), 
+		inverseJoinColumns = @JoinColumn(name = "deploy_deployID", referencedColumnName = "deployID"))
 	private Set<Deploy> deploy;
 
 	public Set<Deploy> getDeploy() {

@@ -16,42 +16,40 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 /**
  * Die Klasse Network ist bla bla.
  * 
  * Im Detail usw, usw.<code>new Network()</code>
+ * 
  * <pre>
  * this is a    x
  * look u  a    e
  * </pre>
+ * 
  * @author Rebecca vanLangelaan
  *
  */
 @Entity
 @Table(name = "networks")
-public class Network implements Serializable{
-	
+public class Network implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
-	@Column(name="networkID")
+	@Column(name = "networkID")
 	private int networkID;
-	
-	@Column(name="networkName")
-	private String networkName;
-	
-	
 
-	//SELF-JOIN
-	@ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name="networkParentID", referencedColumnName = "networkID")
+	@Column(name = "networkName")
+	private String networkName;
+
+	@ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@JoinColumn(name = "networkParentID", referencedColumnName = "networkID")
 	private Network parent;
 
 	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
 	private List<Network> children;
-	
+
 	public Network getParent() {
 		return parent;
 	}
@@ -61,14 +59,15 @@ public class Network implements Serializable{
 	}
 
 	public List<Network> getChildren() {
-		return  children;
+		return children;
 	}
-	
-	public void addChildren(Network network){
-		if(network == null ){
-			throw new IllegalArgumentException("ein Kind-Netzwerk darf nicht null sein");
+
+	public void addChildren(Network network) {
+		if (network == null) {
+			throw new IllegalArgumentException(
+					"ein Kind-Netzwerk darf nicht null sein");
 		}
-		if(children == null){
+		if (children == null) {
 			children = new ArrayList<Network>();
 		}
 		children.add(network);
@@ -77,38 +76,37 @@ public class Network implements Serializable{
 	public void setChildren(List<Network> children) {
 		this.children = children;
 	}
-	
-	public boolean hasParentNetwork(){
-		return  parent != null;
+
+	public boolean hasParentNetwork() {
+		return parent != null;
 	}
-	
-	public int getParentNetworkID(){
-		if(parent == null){
+
+	public int getParentNetworkID() {
+		if (parent == null) {
 			throw new IllegalStateException("network hat keinen parent!");
 		}
 		return parent.getNetworkID();
 	}
-	
-	
+
 	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Node> nodes;
 
-	public Set<Node> getNode(){
+	public Set<Node> getNode() {
 		return nodes;
 	}
-	
-	public void setNode(Set<Node> nodes){
+
+	public void setNode(Set<Node> nodes) {
 		this.nodes = nodes;
 	}
-	
-	
-	public Network(){
+
+	public Network() {
 	}
-	
-	public Network(String networkName, Network networkParentID){
+
+	public Network(String networkName, Network networkParentID) {
 		this.networkName = networkName;
 		this.parent = networkParentID;
 	}
+
 	public int getNetworkID() {
 		return networkID;
 	}
@@ -127,19 +125,17 @@ public class Network implements Serializable{
 
 	/**
 	 * ahgsjhdgfjasdhfgdhagjdfgjsdf
+	 * 
 	 * @param networkName
-	 * @
+	 *            @
 	 */
 	public void setNetworkName(String networkName) {
 		this.networkName = networkName;
 	}
 
-	
-	
 	@Override
-	public String toString(){
+	public String toString() {
 		return getNetworkID() + ", " + getNetworkName();
 	}
 
-	
 }

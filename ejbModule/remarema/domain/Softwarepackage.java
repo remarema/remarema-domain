@@ -3,6 +3,7 @@ package remarema.domain;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,9 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="softwarepackage")
-public class Softwarepackage implements Serializable{
-	
+@Table(name = "softwarepackage")
+public class Softwarepackage implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -23,25 +24,22 @@ public class Softwarepackage implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(name="softwarepackageID")
+	@Column(name = "softwarepackageID")
 	private int softwarepackageID;
-	
-	@Column(name="softwarepackageName")
-	private String softwarepackageName;
-	
-	
 
-	@OneToMany(mappedBy = "softwarepackage", fetch = FetchType.LAZY)
+	@Column(name = "softwarepackageName")
+	private String softwarepackageName;
+
+	@OneToMany(mappedBy = "softwarepackage", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Softwareversion> softwareversions;
-	
-	public Set<Softwareversion> getSoftwareversion(){
+
+	public Set<Softwareversion> getSoftwareversion() {
 		return softwareversions;
 	}
-	public void setSoftwareversion(Set<Softwareversion> softwareversions){
+
+	public void setSoftwareversion(Set<Softwareversion> softwareversions) {
 		this.softwareversions = softwareversions;
 	}
-	
-	
 	
 
 	public int getSoftwarepackageID() {
@@ -59,16 +57,5 @@ public class Softwarepackage implements Serializable{
 	public void setSoftwarepackageName(String softwarepackageName) {
 		this.softwarepackageName = softwarepackageName;
 	}
-	
-	/*
-	private Set<Softwareversion> softwareversions = new HashSet<Softwareversion>();
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="softwarepackage")
-	public Set<Softwareversion> getSoftwareversion(){
-		return softwareversions;
-	}
-	public void setSoftwareversion(Set<Softwareversion> softwareversions){
-		this.softwareversions = softwareversions;
-	}
-	*/
-	
+
 }

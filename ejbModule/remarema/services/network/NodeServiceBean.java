@@ -60,24 +60,10 @@ public class NodeServiceBean {
 		query.setParameter("name", nodeNetworkName);
 		return query.getSingleResult();
 	}
-	
-//	private Node findNodeByName(String nodeName){
-//		TypedQuery<Node> query = em.createQuery(
-//				"SELECT o from Node o WHERE o.nodeName = :name", Node.class);
-//		query.setParameter("name", nodeName);
-//		return query.getSingleResult();
-//	}
-	
-	private Node findNodeByID(int nodeID){
-		TypedQuery<Node> query = em.createQuery(
-				"SELECT o from Node o WHERE o.nodeID = :id", Node.class);
-		query.setParameter("id", nodeID);
-		return query.getSingleResult();
-	}
 
 	public void nodeUpdate(UpdateNode command) {
 		int nodeID = command.getNodeID();
-		Node node = findNodeByID(nodeID);
+		Node node = em.find(Node.class, nodeID);
 		node.setNodeName(command.getNodeName());
 		node.setNodeIP(command.getNodeIP());
 		
