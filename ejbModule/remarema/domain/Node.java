@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import remarema.services.network.IPAddress;
+
 @Entity
 @Table(name = "nodes")
 public class Node implements Serializable {
@@ -31,7 +33,7 @@ public class Node implements Serializable {
 	@Column(name = "nodeName")
 	private String nodeName;
 	@Column(name = "nodeIP")
-	private String nodeIP;
+	private int nodeIP;
 	@Column(name = "softwareVersion")
 	private String softwareVersion;
 
@@ -104,12 +106,12 @@ public class Node implements Serializable {
 		this.nodeName = nodeName;
 	}
 
-	public String getNodeIP() {
+	public int getNodeIP() {
 		return nodeIP;
 	}
 
-	public void setNodeIP(String nodeIP) {
-		this.nodeIP = nodeIP;
+	public void setNodeIP(int nodeIPInt) {
+		this.nodeIP = nodeIPInt;
 	}
 
 	public String getSoftwareVersion() {

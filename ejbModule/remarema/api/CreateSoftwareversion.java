@@ -5,7 +5,9 @@ public class CreateSoftwareversion {
 	public int softwareID;
 	public String softwareName;
 	public String softwarePath;
+	public int softwarepackageID;
 	private String softwarepackageName;
+	
 
 	public int getSoftwareID() {
 		return softwareID;
@@ -30,6 +32,14 @@ public class CreateSoftwareversion {
 	public void setSoftwarePath(String softwarePath) {
 		this.softwarePath = softwarePath;
 	}
+	
+	public int getSoftwarepackageID() {
+		return softwarepackageID;
+	}
+
+	public void setSoftwarepackageID(int softwarepackageID) {
+		this.softwarepackageID = softwarepackageID;
+	}
 
 	public String getSoftwarepackageName() {
 		return softwarepackageName;
@@ -38,4 +48,6 @@ public class CreateSoftwareversion {
 	public void setSoftwarepackageName(String softwarepackageName) {
 		this.softwarepackageName = softwarepackageName;
 	}
+
+
 }

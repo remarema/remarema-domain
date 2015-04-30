@@ -1,10 +1,11 @@
 package remarema.api;
 
 public class UpdateVersion {
-	
+
 	public int softwareID;
 	public String softwareName;
 	public String softwarePath;
+	public int softwarepackageID;
 	private String softwarepackageName;
 
 	public int getSoftwareID() {
@@ -29,6 +30,14 @@ public class UpdateVersion {
 
 	public void setSoftwarePath(String softwarePath) {
 		this.softwarePath = softwarePath;
+	}
+
+	public int getSoftwarepackageID() {
+		return softwarepackageID;
+	}
+
+	public void setSoftwarepackageID(int softwarepackageID) {
+		this.softwarepackageID = softwarepackageID;
 	}
 
 	public String getSoftwarepackageName() {

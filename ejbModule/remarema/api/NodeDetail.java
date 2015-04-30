@@ -1,11 +1,13 @@
 package remarema.api;
 
+import remarema.services.network.IPAddress;
+
 
 public class NodeDetail {
 
 	public Integer nodeID;
 	private String nodeName;
-	private String nodeIP;
+	private IPAddress nodeIP;
 	private String softwareversion;
 	private Integer nodeNetworkID;
 	private String nodeNetworkName;
@@ -26,11 +28,11 @@ public class NodeDetail {
 		this.nodeName = nodeName;
 	}
 
-	public String getNodeIP() {
+	public IPAddress getNodeIP() {
 		return nodeIP;
 	}
 
-	public void setNodeIP(String nodeIP) {
+	public void setNodeIP(IPAddress nodeIP) {
 		this.nodeIP = nodeIP;
 	}
 

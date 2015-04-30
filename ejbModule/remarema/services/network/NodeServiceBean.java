@@ -39,12 +39,15 @@ public class NodeServiceBean {
 		this.em = em;
 	}
 
-	public void execute(CreateNode command) {
+	public void execute(CreateNode command) throws IPNotValidException {
 		String nodeNetworkName = command.getNodeNetworkName();
 		Network nodeNetwork = findNodeNetwork(nodeNetworkName);
+		String nodeIPString = command.getNodeIP();
+		IPAddress ipAddress = IPAddress.parse(nodeIPString);
+		int nodeIPInt = ipAddress.toInt();
 		
 		Node n = new Node(command.getNodeName(), nodeNetwork);
-		n.setNodeIP(command.getNodeIP());
+		n.setNodeIP(nodeIPInt);
 		nodeNetwork.getNode().add(n);
 		em.persist(n);
 	}
@@ -61,11 +64,16 @@ public class NodeServiceBean {
 		return query.getSingleResult();
 	}
 
-	public void nodeUpdate(UpdateNode command) {
+	public void nodeUpdate(UpdateNode command) throws IPNotValidException {
 		int nodeID = command.getNodeID();
+		String nodeIPString = command.getNodeIP();
+		IPAddress ipAddress = IPAddress.parse(nodeIPString);
+		
+		int nodeIPInt = ipAddress.toInt();
+		
 		Node node = em.find(Node.class, nodeID);
 		node.setNodeName(command.getNodeName());
-		node.setNodeIP(command.getNodeIP());
+		node.setNodeIP(nodeIPInt);
 		
 		String nodeNetworkName = command.getNodeNetworkName();
 		Network nodeNetwork = findNodeNetwork(nodeNetworkName);
@@ -90,7 +98,7 @@ public class NodeServiceBean {
 		NodeDetail nd = new NodeDetail();
 		nd.setNodeID(node.getID());
 		nd.setNodeName(node.getNodeName());
-		nd.setNodeIP(node.getNodeIP());
+		nd.setNodeIP(new IPAddress(node.getNodeIP()));
 		nd.setSoftwareversion(node.getSoftwareVersion());
 		
 		Network nodeNetwork = node.getNodeNetwork();
@@ -130,7 +138,7 @@ public class NodeServiceBean {
 			
 			detail.setNodeID(result.getID());
 			detail.setNodeName(result.getNodeName());
-			detail.setNodeIP(result.getNodeIP());
+			detail.setNodeIP(new IPAddress(result.getNodeIP()));
 			detail.setSoftwareversion(result.getSoftwareVersion());
 			
 			if(result.hasNetwork()){
