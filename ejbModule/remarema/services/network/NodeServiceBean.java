@@ -143,5 +143,24 @@ public class NodeServiceBean {
 		}
 		return nodeDetail;
 	}
+	
+	
+	public List<Node> findNodeByName(String nodeName){
+		TypedQuery<Node> query = em.createQuery(
+				"SELECT o From Node o WHERE o.nodeName LIKE :name", Node.class);
+		query.setParameter("name", "%"+ nodeName + "%");
+		
+		List<Node> results = query.getResultList();
+		return results;
+	}
+	
+	public List<NodeDetail> getNodeDetailForNodeName(NodeDetail nodeDetail){
+		String nodeName = nodeDetail.getNodeName();
+		List<Node> results = findNodeByName(nodeName);
+		return mapNodesToNodeDetail(results);
+		
+	}
+	
+	
 
 }

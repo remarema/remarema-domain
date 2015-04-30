@@ -11,8 +11,10 @@ import javax.persistence.TypedQuery;
 
 import remarema.api.CreateNetwork;
 import remarema.api.NetworkDetail;
+import remarema.api.NodeDetail;
 import remarema.api.UpdateNetwork;
 import remarema.domain.Network;
+import remarema.domain.Node;
 
 /**
  * Das NetworkServiceBean stellt Methoden für die Verwaltung von Netzwerken bereit.
@@ -141,5 +143,22 @@ public class NetworkServiceBean {
 				"SELECT o FROM Network o WHERE o.networkID =" + networkID, Network.class);
 		return query.getSingleResult();
 	}
+	
+	public List<Network> findNetworkByName(String networkName){
+		TypedQuery<Network> query = em.createQuery(
+				"SELECT o From Network o WHERE o.networkName LIKE :name", Network.class);
+		query.setParameter("name", "%"+ networkName + "%");
+		
+		List<Network> results = query.getResultList();
+		return results;
+	}
+	
+	public List<NetworkDetail> getNetworkDetailForNetworkName(NetworkDetail networkDetail){
+		String networkName = networkDetail.getNetworkName();
+		List<Network> results = findNetworkByName(networkName);
+		return mapNetworksToNetworkDetail(results);
+		
+	}
+	
 
 }
