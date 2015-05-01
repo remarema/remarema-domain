@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -34,6 +35,11 @@ public class Softwareversion implements Serializable {
 	public Softwareversion() {
 
 	}
+	
+	public Softwareversion(String versionName, Softwarepackage softwarepackage){
+		this.versionName = versionName;
+		this.softwarepackage = softwarepackage;
+	}
 
 	@ManyToMany
 	@JoinTable(name = "nodes_has_softwareversion")
@@ -47,6 +53,7 @@ public class Softwareversion implements Serializable {
 		this.nodes = nodes;
 	}
 
+	@JoinColumn(name = "softwarepackage_softwarepackageID", referencedColumnName = "softwarepackageID")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Softwarepackage softwarepackage;
 
@@ -57,7 +64,7 @@ public class Softwareversion implements Serializable {
 	public void setSoftwarepackage(Softwarepackage softwarepackage) {
 		this.softwarepackage = softwarepackage;
 	}
-	
+
 	public boolean hasPackage() {
 		return softwarepackage != null;
 	}

@@ -2,13 +2,13 @@ package remarema.api;
 
 public class PackageDetail {
 	
-	private int softwarepackageID;
+	private Integer softwarepackageID;
 	public String softwarepackageName;
 	
-	public int getSoftwarepackageID() {
+	public Integer getSoftwarepackageID() {
 		return softwarepackageID;
 	}
-	public void setSoftwarepackageID(int softwarepackageID) {
+	public void setSoftwarepackageID(Integer softwarepackageID) {
 		this.softwarepackageID = softwarepackageID;
 	}
 	public String getSoftwarepackageName() {

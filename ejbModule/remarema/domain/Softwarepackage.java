@@ -40,7 +40,6 @@ public class Softwarepackage implements Serializable {
 	public void setSoftwareversion(Set<Softwareversion> softwareversions) {
 		this.softwareversions = softwareversions;
 	}
-	
 
 	public int getSoftwarepackageID() {
 		return softwarepackageID;

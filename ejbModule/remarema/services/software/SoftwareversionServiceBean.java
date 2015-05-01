@@ -36,22 +36,21 @@ public class SoftwareversionServiceBean {
 	}
 
 	public void execute(CreateSoftwareversion command) {
-		int pkgID = command.getSoftwarepackageID();
-		Softwarepackage pkg = findSoftwarePackage(pkgID);
+		String pkgName = command.getSoftwarepackageName();
+		Softwarepackage pkg = findSoftwarePackage(pkgName);
 
-		Softwareversion version = new Softwareversion();
-		version.setVersionName(command.getSoftwareName());
+		Softwareversion version = new Softwareversion(command.getSoftwareName(), pkg);
 		version.setSoftwarePath(command.getSoftwarePath());
 		pkg.getSoftwareversion().add(version);
 		em.persist(version);
 	}
 
-	private Softwarepackage findSoftwarePackage(int pkgID) {
+	private Softwarepackage findSoftwarePackage(String pkgName) {
 		TypedQuery<Softwarepackage> query = em
 				.createQuery(
-						"SELECT o From Softwarepackage o WHERE o.softwarepackageID = :id",
+						"SELECT o From Softwarepackage o WHERE o.softwarepackageName = :name",
 						Softwarepackage.class);
-		query.setParameter("id", pkgID);
+		query.setParameter("name", pkgName);
 		return query.getSingleResult();
 	}
 
@@ -61,8 +60,8 @@ public class SoftwareversionServiceBean {
 		version.setVersionName(command.getSoftwareName());
 		version.setSoftwarePath(command.getSoftwarePath());
 
-		int pkgID = command.getSoftwarepackageID();
-		Softwarepackage pkg = findSoftwarePackage(pkgID);
+		String pkgName = command.getSoftwarepackageName();
+		Softwarepackage pkg = findSoftwarePackage(pkgName);
 		version.setSoftwarepackage(pkg);
 
 		em.flush();

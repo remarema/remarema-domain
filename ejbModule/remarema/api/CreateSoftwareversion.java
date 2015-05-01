@@ -6,7 +6,7 @@ public class CreateSoftwareversion {
 	public String softwareName;
 	public String softwarePath;
 	public int softwarepackageID;
-	private String softwarepackageName;
+	public String softwarepackageName;
 	
 
 	public int getSoftwareID() {
