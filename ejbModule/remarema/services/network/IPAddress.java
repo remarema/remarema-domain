@@ -47,7 +47,7 @@ public class IPAddress {
 				.matcher(ipString);
 		if (!matcher.matches()) {
 			throw new IPNotValidException(
-					"Der angegebene String entspricht nicht einer IP-Adresse");
+					"Der angegebene String entspricht nicht einer IP-Adresse.");
 		}
 		return new IPAddress(parseAndValidateByte(matcher.group("Byte0")),
 				parseAndValidateByte(matcher.group("Byte1")),
