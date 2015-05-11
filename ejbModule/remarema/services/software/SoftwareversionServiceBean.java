@@ -10,11 +10,15 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import remarema.api.CreateSoftwareversion;
+import remarema.api.NodeDetail;
 import remarema.api.PackageDetail;
 import remarema.api.UpdateVersion;
 import remarema.api.VersionDetail;
+import remarema.domain.Network;
+import remarema.domain.Node;
 import remarema.domain.Softwarepackage;
 import remarema.domain.Softwareversion;
+import remarema.services.network.IPAddress;
 
 /**
  * Session Bean implementation class SoftwareversionServiceBean
@@ -87,11 +91,11 @@ public class SoftwareversionServiceBean {
 		version.setSoftwareID(softwareversion.getSoftwareID());
 		version.setSoftwareName(softwareversion.getVersionName());
 		version.setSoftwarePath(softwareversion.getSoftwarePath());
-
+		
 		Softwarepackage pkg = softwareversion.getSoftwarepackage();
 		if (pkg != null) {
-			version.setSoftwarepackageID(version.getSoftwarepackageID());
-			version.setSoftwarepackageName(version.getSoftwarepackageName());
+			version.setSoftwarepackageID(pkg.getSoftwarepackageID());
+			version.setSoftwarepackageName(pkg.getSoftwarepackageName());
 		}
 		return version;
 	}
@@ -115,6 +119,7 @@ public class SoftwareversionServiceBean {
 			VersionDetail detail = new VersionDetail();
 			detail.setSoftwareID(result.getSoftwareID());
 			detail.setSoftwareName(result.getVersionName());
+			detail.setSoftwarePath(result.getSoftwarePath());
 
 			if (result.hasPackage()) {
 				Softwarepackage pkg = result.getSoftwarepackage();
@@ -128,10 +133,10 @@ public class SoftwareversionServiceBean {
 	}
 
 	List<Softwareversion> loadAllSoftware(PackageDetail packageDetail) {
+		int packageID = packageDetail.getSoftwarepackageID();
 		TypedQuery<Softwareversion> query = em.createQuery(
-				"SELECT o From Softwareversion o WHERE o.softwarepackage = :packageDetail ORDER BY o.versionName ",
+				"SELECT o From Softwareversion o WHERE o.softwarepackage.softwarepackageID = "+ packageID + " ORDER BY o.versionName ",
 				Softwareversion.class);
-		query.setParameter("packageDetail", packageDetail);
 		List<Softwareversion> results = query.getResultList();
 		return results;
 	}
