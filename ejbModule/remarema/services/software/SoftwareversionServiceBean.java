@@ -128,7 +128,7 @@ public class SoftwareversionServiceBean {
 
 	List<Softwareversion> loadAllSoftware(int packageID) {
 		TypedQuery<Softwareversion> query = em.createQuery(
-				"SELECT o From Softwareversion o ORDER BY o.versionName WHERE o.softwarepackage_softwarepackageID = :packageID",
+				"SELECT o From Softwareversion o WHERE o.softwarepackage_softwarepackageID = :packageID ORDER BY o.versionName ",
 				Softwareversion.class);
 		query.setParameter("packageID", packageID);
 		List<Softwareversion> results = query.getResultList();
