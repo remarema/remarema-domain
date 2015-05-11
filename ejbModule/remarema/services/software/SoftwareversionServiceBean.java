@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import remarema.api.CreateSoftwareversion;
+import remarema.api.PackageDetail;
 import remarema.api.UpdateVersion;
 import remarema.api.VersionDetail;
 import remarema.domain.Softwarepackage;
@@ -102,7 +103,7 @@ public class SoftwareversionServiceBean {
 		return query.getSingleResult();
 	}
 
-	public List<VersionDetail> getVersionDetailForAllVersions(Softwarepackage packageDetail) {
+	public List<VersionDetail> getVersionDetailForAllVersions(PackageDetail packageDetail) {
 		List<Softwareversion> results = loadAllSoftware(packageDetail);
 		return mapVersionsToVersionDetail(results);
 	}
@@ -126,7 +127,7 @@ public class SoftwareversionServiceBean {
 
 	}
 
-	List<Softwareversion> loadAllSoftware(Softwarepackage packageDetail) {
+	List<Softwareversion> loadAllSoftware(PackageDetail packageDetail) {
 		TypedQuery<Softwareversion> query = em.createQuery(
 				"SELECT o From Softwareversion o WHERE o.softwarepackage = :packageDetail ORDER BY o.versionName ",
 				Softwareversion.class);
