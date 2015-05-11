@@ -102,8 +102,8 @@ public class SoftwareversionServiceBean {
 		return query.getSingleResult();
 	}
 
-	public List<VersionDetail> getVersionDetailForAllVersions() {
-		List<Softwareversion> results = loadAllSoftware();
+	public List<VersionDetail> getVersionDetailForAllVersions(String packageName) {
+		List<Softwareversion> results = loadAllSoftware(packageName);
 		return mapVersionsToVersionDetail(results);
 	}
 
@@ -126,10 +126,11 @@ public class SoftwareversionServiceBean {
 
 	}
 
-	List<Softwareversion> loadAllSoftware() {
+	List<Softwareversion> loadAllSoftware(String packageName) {
 		TypedQuery<Softwareversion> query = em.createQuery(
-				"SELECT o From Softwareversion o ORDER BY o.versionName",
+				"SELECT o From Softwareversion o ORDER BY o.versionName WHERE o.softwarepackageName := packageName",
 				Softwareversion.class);
+		query.setParameter("packageName", packageName);
 		List<Softwareversion> results = query.getResultList();
 		return results;
 	}
