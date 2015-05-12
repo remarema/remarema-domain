@@ -67,6 +67,10 @@ public class Deploy implements Serializable {
 	public void setSoftwareversion(Softwareversion softwareversion) {
 		this.softwareversion = softwareversion;
 	}
+	
+	public boolean hasSoftwareversion() {
+		return softwareversion != null;
+	}
 
 	public int getDeployID() {
 		return deployID;

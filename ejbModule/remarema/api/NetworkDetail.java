@@ -41,4 +41,10 @@ public class NetworkDetail {
 	public void setNetworkParentName(String networkParentName) {
 		this.networkParentName = networkParentName;
 	}
+	
+	@Override
+	public String toString(){
+		return getNetworkName();
+		
+	}
 }
