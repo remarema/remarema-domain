@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -98,6 +100,24 @@ public class Network implements Serializable {
 	public void setNode(Set<Node> nodes) {
 		this.nodes = nodes;
 	}
+	
+	@ManyToMany
+	@JoinTable(name = "networks_has_deploy", joinColumns = @JoinColumn(name = "networks_networkID", referencedColumnName = "networkID"), 
+		inverseJoinColumns = @JoinColumn(name = "deploy_deployID", referencedColumnName = "deployID"))
+	private Set<Deploy> deploy;
+
+	public Set<Deploy> getDeploy() {
+		return deploy;
+	}
+
+	public void setDeploy(Set<Deploy> deploy) {
+		this.deploy = deploy;
+	}
+	
+	
+	
+	
+	
 
 	public Network() {
 	}

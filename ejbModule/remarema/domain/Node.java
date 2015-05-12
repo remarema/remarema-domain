@@ -73,19 +73,6 @@ public class Node implements Serializable {
 		this.softwareversions = softwareversions;
 	}
 
-	@ManyToMany
-	@JoinTable(name = "deploy_has_nodes", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), 
-		inverseJoinColumns = @JoinColumn(name = "deploy_deployID", referencedColumnName = "deployID"))
-	private Set<Deploy> deploy;
-
-	public Set<Deploy> getDeploy() {
-		return deploy;
-	}
-
-	public void setDeploy(Set<Deploy> deploy) {
-		this.deploy = deploy;
-	}
-
 	public Node() {
 	}
 

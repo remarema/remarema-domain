@@ -13,36 +13,36 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="deploy")
-public class Deploy implements Serializable{
-	
+@Table(name = "deploy")
+public class Deploy implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column (name="deployID")
+	@Column(name = "deployID")
 	private int deployID;
-	
-	@Column (name="deployDateTime")
+
+	@Column(name = "deployDateTime")
 	private String deployDateTime;
-	
-	@Column (name="installationDateTime")
+
+	@Column(name = "installationDateTime")
 	private String installationDateTime;
-	
+
 	@ManyToMany
-	@JoinTable(name="deploy_has_nodes")
-	Set<Node> nodes;
-	public Set<Node> getNode(){
-		return nodes;
-	}
-	public void setNode(Set<Node> nodes){
-		this.nodes = nodes;
+	@JoinTable(name = "networks_has_deploy")
+	Set<Network> networks;
+
+	public Set<Network> getNetworks() {
+		return networks;
 	}
 
+	public void setNetworks(Set<Network> networks) {
+		this.networks = networks;
+	}
 
 	public int getDeployID() {
 		return deployID;
@@ -67,5 +67,5 @@ public class Deploy implements Serializable{
 	public void setInstallationDateTime(String installationDateTime) {
 		this.installationDateTime = installationDateTime;
 	}
-	
+
 }
