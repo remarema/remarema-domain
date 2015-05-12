@@ -3,6 +3,7 @@ package remarema.domain;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,8 +38,8 @@ public class Softwareversion implements Serializable {
 	public Softwareversion() {
 
 	}
-	
-	public Softwareversion(String versionName, Softwarepackage softwarepackage){
+
+	public Softwareversion(String versionName, Softwarepackage softwarepackage) {
 		this.versionName = versionName;
 		this.softwarepackage = softwarepackage;
 	}
@@ -76,6 +79,17 @@ public class Softwareversion implements Serializable {
 		return softwarepackage.getSoftwarepackageID();
 	}
 
+	@OneToMany(mappedBy = "softwareversion", fetch = FetchType.LAZY)
+	private Set<Deploy> deploy;
+
+	public Set<Deploy> getDeploy() {
+		return deploy;
+	}
+
+	public void setDeploy(Set<Deploy> deploy) {
+		this.deploy = deploy;
+	}
+
 	public int getSoftwareID() {
 		return softwareID;
 	}
@@ -99,5 +113,4 @@ public class Softwareversion implements Serializable {
 	public void setSoftwarePath(String softwarePath) {
 		this.softwarePath = softwarePath;
 	}
-
 }

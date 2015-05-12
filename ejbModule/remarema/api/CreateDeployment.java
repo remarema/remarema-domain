@@ -1,7 +1,7 @@
 package remarema.api;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import org.h2.util.DateTimeUtils;
 
@@ -10,8 +10,8 @@ public class CreateDeployment {
 	public static ArrayList<NetworkDetail> networks = new ArrayList<>();
 
 	public int deployID;
-	public DateTimeUtils deployDateTime;
-	public DateTimeUtils installationDateTime;
+	public Date deployDateTime;
+	public Date installationDateTime;
 	public int softwareversionID;
 	public String softwareversionName;
 
@@ -23,19 +23,19 @@ public class CreateDeployment {
 		this.deployID = deployID;
 	}
 
-	public DateTimeUtils getDeployDateTime() {
+	public Date getDeployDateTime() {
 		return deployDateTime;
 	}
 
-	public void setDeployDateTime(DateTimeUtils deployDateTime) {
+	public void setDeployDateTime(Date deployDateTime) {
 		this.deployDateTime = deployDateTime;
 	}
 
-	public DateTimeUtils getInstallationDateTime() {
+	public Date getInstallationDateTime() {
 		return installationDateTime;
 	}
 
-	public void setInstallationDateTime(DateTimeUtils installationDateTime) {
+	public void setInstallationDateTime(Date installationDateTime) {
 		this.installationDateTime = installationDateTime;
 	}
 
