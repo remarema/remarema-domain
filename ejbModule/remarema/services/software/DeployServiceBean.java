@@ -12,12 +12,10 @@ import javax.persistence.TypedQuery;
 import remarema.api.CreateDeployment;
 import remarema.api.DeployDetail;
 import remarema.api.NetworkDetail;
-import remarema.api.NodeDetail;
+import remarema.api.UpdateDeploy;
 import remarema.domain.Deploy;
 import remarema.domain.Network;
-import remarema.domain.Node;
 import remarema.domain.Softwareversion;
-import remarema.services.network.IPAddress;
 
 /**
  * Session Bean implementation class DeployServiceBean
@@ -49,6 +47,20 @@ public class DeployServiceBean {
 		deploy.setInstallationDateTime(command.getInstallationDateTime());
 
 		em.persist(deploy);
+	}
+	
+	public void updateDeploy(UpdateDeploy command){
+		ArrayList<NetworkDetail> deployNetworks = command.getNetworks();
+		ArrayList<Network> networks = getNetworkForNetworkDetails(deployNetworks);
+		
+		Softwareversion software = new Softwareversion();
+		software.setSoftwareID(command.getSoftwareversionID());
+		
+		Deploy deploy = new Deploy(software);
+		deploy.setNetworks(networks);
+		deploy.setDeployDateTime(command.getDeployDateTime());
+		deploy.setInstallationDateTime(command.getInstallationDateTime());
+		em.flush();
 	}
 	
 	public void removeDeploy(DeployDetail deployDetail) {
@@ -96,8 +108,8 @@ public class DeployServiceBean {
 				detail.setVersionName(software.getVersionName());
 			}
 			
-			List<NetworkDetail> nwDetail = new ArrayList<NetworkDetail>();
-			List<Network> allNetworks = result.getNetworks();
+			ArrayList<NetworkDetail> nwDetail = new ArrayList<NetworkDetail>();
+			ArrayList<Network> allNetworks = result.getNetworks();
 			for(Network nw : allNetworks){
 				NetworkDetail networkDetail = new NetworkDetail();
 				networkDetail.setNetworkID(nw.getNetworkID());
@@ -124,6 +136,7 @@ public class DeployServiceBean {
 		return mapDeployToDeployDetail(loadDeploy(deployID));
 
 	}
+
 	
 	Deploy loadDeploy(int deployID) {
 		TypedQuery<Deploy> query = em.createQuery(
@@ -148,8 +161,8 @@ public class DeployServiceBean {
 			deployDetail.setPackageName(packageName);
 		}
 		
-		List<NetworkDetail> nwDetail = new ArrayList<NetworkDetail>();
-		List<Network> allNetworks = deploy.getNetworks();
+		ArrayList<NetworkDetail> nwDetail = new ArrayList<NetworkDetail>();
+		ArrayList<Network> allNetworks = deploy.getNetworks();
 		
 		for(Network networks : allNetworks){
 			NetworkDetail networkDetail = new NetworkDetail();

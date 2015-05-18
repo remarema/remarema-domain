@@ -1,7 +1,6 @@
 package remarema.api;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class DeployDetail {
 	public Date installationDateTime;
 	public int softwareID;
 	public String versionName;
-	public List<NetworkDetail> networks;
+	public static ArrayList<NetworkDetail> networks;
 	private String packageName;
 	private int packageID;
 
@@ -28,8 +27,9 @@ public class DeployDetail {
 	public String getDeployDateTime() {
 		Date t = deployDateTime;
 		int year = t.getYear() + 1900;
-		
-		return t.getDate() + "." + t.getMonth() + "." + year + " " + t.getHours() + ":" + t.getMinutes();
+
+		return t.getDate() + "." + t.getMonth() + "." + year + " "
+				+ t.getHours() + ":" + t.getMinutes();
 	}
 
 	public void setDeployDateTime(Date deployDateTime) {
@@ -40,8 +40,9 @@ public class DeployDetail {
 	public String getInstallationDateTime() {
 		Date t = installationDateTime;
 		int year = t.getYear() + 1900;
-		
-		return t.getDate() + "." + t.getMonth() + "." + year + " " + t.getHours() + ":" + t.getMinutes();
+
+		return t.getDate() + "." + t.getMonth() + "." + year + " "
+				+ t.getHours() + ":" + t.getMinutes();
 
 	}
 
@@ -56,6 +57,7 @@ public class DeployDetail {
 	public void setSoftwareID(int softwareID) {
 		this.softwareID = softwareID;
 	}
+
 	public String getVersionName() {
 		return versionName;
 	}
@@ -64,29 +66,28 @@ public class DeployDetail {
 		this.versionName = versionName;
 	}
 
-	public List<NetworkDetail> getNetworks() {
+	public ArrayList<NetworkDetail> getNetworks() {
 		return networks;
 	}
 
-	public void setNetworks(List<NetworkDetail> networks) {
+	public void setNetworks(ArrayList<NetworkDetail> networks) {
 		this.networks = networks;
 	}
 
 	public String getPackageName() {
 		return packageName;
 	}
-	
-	public void setPackageName(String packageName){
+
+	public void setPackageName(String packageName) {
 		this.packageName = packageName;
 	}
 
 	public void setPackageID(int packageID) {
 		this.packageID = packageID;
 	}
-	
-	public int getPackageID(){
+
+	public int getPackageID() {
 		return packageID;
 	}
-	
 
 }
