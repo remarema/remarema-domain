@@ -1,7 +1,9 @@
-package remarema.api;
+package remarema.api.software;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import remarema.api.network.NetworkDetail;
 
 
 public class CreateDeployment {

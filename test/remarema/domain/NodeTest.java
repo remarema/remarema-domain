@@ -8,7 +8,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import remarema.api.NodeDetail;
+import remarema.api.network.NodeDetail;
 import remarema.services.network.NodeServiceBean;
 
 

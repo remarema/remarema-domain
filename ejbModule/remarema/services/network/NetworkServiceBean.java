@@ -9,10 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import remarema.api.CreateNetwork;
-import remarema.api.NetworkDetail;
-import remarema.api.NodeDetail;
-import remarema.api.UpdateNetwork;
+import remarema.api.network.CreateNetwork;
+import remarema.api.network.NetworkDetail;
+import remarema.api.network.NodeDetail;
+import remarema.api.network.UpdateNetwork;
 import remarema.domain.Network;
 import remarema.domain.Node;
 

@@ -9,11 +9,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import remarema.api.CreateSoftwareversion;
-import remarema.api.NodeDetail;
-import remarema.api.PackageDetail;
-import remarema.api.UpdateVersion;
-import remarema.api.VersionDetail;
+import remarema.api.network.NodeDetail;
+import remarema.api.software.CreateSoftwareversion;
+import remarema.api.software.PackageDetail;
+import remarema.api.software.UpdateVersion;
+import remarema.api.software.VersionDetail;
 import remarema.domain.Network;
 import remarema.domain.Node;
 import remarema.domain.Softwarepackage;

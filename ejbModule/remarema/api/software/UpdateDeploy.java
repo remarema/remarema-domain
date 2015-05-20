@@ -1,8 +1,10 @@
-package remarema.api;
+package remarema.api.software;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import remarema.api.network.NetworkDetail;
 
 public class UpdateDeploy {
 

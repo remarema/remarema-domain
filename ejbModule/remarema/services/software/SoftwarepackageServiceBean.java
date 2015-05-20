@@ -9,9 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import remarema.api.CreatePackage;
-import remarema.api.PackageDetail;
-import remarema.api.UpdatePackage;
+import remarema.api.software.CreatePackage;
+import remarema.api.software.PackageDetail;
+import remarema.api.software.UpdatePackage;
 import remarema.domain.Softwarepackage;
 
 /**

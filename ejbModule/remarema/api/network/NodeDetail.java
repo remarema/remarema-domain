@@ -1,4 +1,4 @@
-package remarema.api;
+package remarema.api.network;
 
 import remarema.services.network.IPAddress;
 

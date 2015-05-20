@@ -9,10 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import remarema.api.CreateDeployment;
-import remarema.api.DeployDetail;
-import remarema.api.NetworkDetail;
-import remarema.api.UpdateDeploy;
+import remarema.api.network.NetworkDetail;
+import remarema.api.software.CreateDeployment;
+import remarema.api.software.DeployDetail;
+import remarema.api.software.UpdateDeploy;
 import remarema.domain.Deploy;
 import remarema.domain.Network;
 import remarema.domain.Softwareversion;

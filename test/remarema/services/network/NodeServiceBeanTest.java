@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import remarema.api.NodeDetail;
+import remarema.api.network.NodeDetail;
 import remarema.domain.Node;
 
 public class NodeServiceBeanTest {

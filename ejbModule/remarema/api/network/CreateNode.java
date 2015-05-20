@@ -1,4 +1,4 @@
-package remarema.api;
+package remarema.api.network;
 
 import javax.validation.constraints.NotNull;
 

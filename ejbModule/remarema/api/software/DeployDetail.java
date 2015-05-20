@@ -1,9 +1,11 @@
-package remarema.api;
+package remarema.api.software;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.slf4j.helpers.FormattingTuple;
+
+import remarema.api.network.NetworkDetail;
 
 public class DeployDetail {
 

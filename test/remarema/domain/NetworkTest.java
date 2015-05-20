@@ -9,7 +9,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import remarema.api.NetworkDetail;
+import remarema.api.network.NetworkDetail;
 import remarema.services.network.NetworkServiceBean;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
