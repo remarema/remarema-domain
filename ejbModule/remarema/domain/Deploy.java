@@ -95,5 +95,10 @@ public class Deploy implements Serializable {
 	public void setInstallationDateTime(Date installationDateTime) {
 		this.installationDateTime = installationDateTime;
 	}
+	
+	@Override
+	public String toString() {
+		return "[" + super.toString() + ", Id = " + getDeployID() + "]";
+	}
 
 }

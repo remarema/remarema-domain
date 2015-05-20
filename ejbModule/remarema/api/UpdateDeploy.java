@@ -6,7 +6,7 @@ import java.util.List;
 
 public class UpdateDeploy {
 
-	public static ArrayList<NetworkDetail> networks = new ArrayList<>();
+	public ArrayList<NetworkDetail> networks = new ArrayList<>();
 
 	public int deployID;
 	public Date deployDateTime;
@@ -56,7 +56,7 @@ public class UpdateDeploy {
 		this.softwareversionName = softwareversionName;
 	}
 
-	public static ArrayList<NetworkDetail> getNetworks() {
+	public ArrayList<NetworkDetail> getNetworks() {
 		return networks;
 	}
 

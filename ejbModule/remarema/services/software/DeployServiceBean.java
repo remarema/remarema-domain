@@ -23,7 +23,7 @@ import remarema.domain.Softwareversion;
 @Stateless
 @LocalBean
 public class DeployServiceBean {
-
+	
 	@PersistenceContext
 	public EntityManager em;
 
@@ -77,8 +77,8 @@ public class DeployServiceBean {
 		for (NetworkDetail result : results) {
 			Network network = new Network();
 			network.setNetworkID(result.getNetworkID());
-
-			networkList.add(network);
+			Network networkCheck = em.find(Network.class, network.getNetworkID());
+			networkList.add(networkCheck);
 		}
 		return networkList;
 	}
@@ -94,7 +94,7 @@ public class DeployServiceBean {
 	}
 	
 	private List<DeployDetail> mapDeployToDeployDetail(List<Deploy> results) {
-		List<DeployDetail> deployDetail = new ArrayList<DeployDetail>();
+		ArrayList<DeployDetail> deployDetailList = new ArrayList<DeployDetail>();
 		
 		for(Deploy result : results){
 			DeployDetail detail = new DeployDetail();
@@ -108,21 +108,23 @@ public class DeployServiceBean {
 				detail.setVersionName(software.getVersionName());
 			}
 			
-			ArrayList<NetworkDetail> nwDetail = new ArrayList<NetworkDetail>();
 			ArrayList<Network> allNetworks = result.getNetworks();
+			ArrayList<NetworkDetail> nwDetail = new ArrayList<NetworkDetail>();
+			
 			for(Network nw : allNetworks){
 				NetworkDetail networkDetail = new NetworkDetail();
 				networkDetail.setNetworkID(nw.getNetworkID());
 				networkDetail.setNetworkName(nw.getNetworkName());
 				nwDetail.add(networkDetail);
-				detail.setNetworks(nwDetail);
 			}
 			
-			deployDetail.add(detail);
+			detail.setNetworks(nwDetail);
+			deployDetailList.add(detail);
 		}
+		return deployDetailList;
 		
-		return deployDetail;
 	}
+	
 
 	List<Deploy> loadAllDeployments() {
 		TypedQuery<Deploy> query = em.createQuery(

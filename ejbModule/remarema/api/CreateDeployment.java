@@ -57,9 +57,11 @@ public class CreateDeployment {
 		return networks;
 	}
 
-	public  void setNetworks(ArrayList<NetworkDetail> networks) {
-		this.networks = networks;
+	public static void setNetworks(ArrayList<NetworkDetail> networks) {
+		CreateDeployment.networks = networks;
 	}
+
+	
 	
 
 }

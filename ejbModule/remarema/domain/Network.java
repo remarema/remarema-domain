@@ -155,7 +155,7 @@ public class Network implements Serializable {
 
 	@Override
 	public String toString() {
-		return getNetworkID() + ", " + getNetworkName();
+		return "[" + super.toString() + ", " + getNetworkID() + ", " + getNetworkName() + "]";
 	}
 
 }

@@ -44,7 +44,7 @@ public class NetworkDetail {
 	
 	@Override
 	public String toString(){
-		return getNetworkName();
+		return "[" + super.toString() + ", networkName = " + getNetworkName() + "]";
 		
 	}
 }

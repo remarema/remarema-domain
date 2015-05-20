@@ -2,7 +2,6 @@ package remarema.api;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class DeployDetail {
 
@@ -11,7 +10,7 @@ public class DeployDetail {
 	public Date installationDateTime;
 	public int softwareID;
 	public String versionName;
-	public static ArrayList<NetworkDetail> networks;
+	public ArrayList<NetworkDetail> networks = new ArrayList<>();
 	private String packageName;
 	private int packageID;
 
@@ -88,6 +87,12 @@ public class DeployDetail {
 
 	public int getPackageID() {
 		return packageID;
+	}
+	
+	@Override
+	public String toString(){
+		return "[" + super.toString() + ", " + getDeployID() + ", " + getSoftwareID() + ", " + getNetworks() + "@" + Integer.toHexString(getNetworks().hashCode()) + "]";
+		
 	}
 
 }
