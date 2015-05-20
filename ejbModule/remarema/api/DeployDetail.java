@@ -3,6 +3,8 @@ package remarema.api;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.slf4j.helpers.FormattingTuple;
+
 public class DeployDetail {
 
 	public int deployID;
@@ -22,26 +24,19 @@ public class DeployDetail {
 		this.deployID = deployID;
 	}
 
-	@SuppressWarnings("deprecation")
 	public String getDeployDateTime() {
 		Date t = deployDateTime;
-		int year = t.getYear() + 1900;
-
-		return t.getDate() + "." + t.getMonth() + "." + year + " "
-				+ t.getHours() + ":" + t.getMinutes();
+		return formatDateTime(t);
 	}
+
 
 	public void setDeployDateTime(Date deployDateTime) {
 		this.deployDateTime = deployDateTime;
 	}
 
-	@SuppressWarnings("deprecation")
 	public String getInstallationDateTime() {
 		Date t = installationDateTime;
-		int year = t.getYear() + 1900;
-
-		return t.getDate() + "." + t.getMonth() + "." + year + " "
-				+ t.getHours() + ":" + t.getMinutes();
+		return formatDateTime(t);
 
 	}
 
@@ -87,6 +82,29 @@ public class DeployDetail {
 
 	public int getPackageID() {
 		return packageID;
+	}
+	
+	private String formatDateTime(Date t) {
+		int year = t.getYear() + 1900;
+		String month = ""+(t.getMonth()+1);
+		String hours = ""+t.getHours();
+		String minutes = ""+ t.getMinutes();
+		String day = ""+ t.getDate();
+		
+		if(t.getDate() < 10){
+			day = "0" + day;
+		}
+		if(t.getHours() < 10){
+			hours = "0" + hours; 
+		}
+		if(t.getMinutes() < 10){
+			minutes = "0" + minutes; 
+		}
+		if(t.getMonth() < 10){
+			month = "0" + month; 
+		}
+		return day + "." + month + "." + year + " "
+				+ hours + ":" + minutes;
 	}
 	
 	@Override

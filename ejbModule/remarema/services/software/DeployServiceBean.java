@@ -56,10 +56,12 @@ public class DeployServiceBean {
 		Softwareversion software = new Softwareversion();
 		software.setSoftwareID(command.getSoftwareversionID());
 		
-		Deploy deploy = new Deploy(software);
+		Deploy deploy = em.find(Deploy.class, command.getDeployID());
+		deploy.setDeployID(command.getDeployID());
 		deploy.setNetworks(networks);
 		deploy.setDeployDateTime(command.getDeployDateTime());
 		deploy.setInstallationDateTime(command.getInstallationDateTime());
+		deploy.setSoftwareversion(software);
 		em.flush();
 	}
 	
@@ -75,10 +77,10 @@ public class DeployServiceBean {
 		ArrayList<Network> networkList = new ArrayList<Network>();
 
 		for (NetworkDetail result : results) {
-			Network network = new Network();
-			network.setNetworkID(result.getNetworkID());
-			Network networkCheck = em.find(Network.class, network.getNetworkID());
-			networkList.add(networkCheck);
+			Network network = em.find(Network.class, result.getNetworkID());
+			if(network != null){
+				networkList.add(network);
+			}
 		}
 		return networkList;
 	}
