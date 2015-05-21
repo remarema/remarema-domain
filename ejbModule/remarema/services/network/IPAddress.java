@@ -1,10 +1,17 @@
 package remarema.services.network;
 
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Diese Klasse stellt sicher, dass es sich bei einer IP-Adresse auch wirklich
- * um eine gültige IPv4-Adresse handelt.
+ * um eine gültige IPv4-Adresse handelt. Hierfür wurde ein Regex-Pattern
+ * geschrieben.
+ * 
+ * Um Benutzer auf eine falsche IPv4-Adressen-Eingabe hinweisen zu können- wurde
+ * eine eigene Exception <code>IPNotValidException</code> geschrieben. Der
+ * Benutzer wird darauf hingewiesen, welcher Teil der IP-Adresse falsch verfasst
+ * wurde.
  * 
  * @author Rebecca vanLangelaan
  *

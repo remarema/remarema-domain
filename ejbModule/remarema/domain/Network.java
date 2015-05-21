@@ -19,18 +19,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Die Klasse Network ist bla bla.
+ * Die Klasse Network ist ein <code>Entity</code> und stellt somit in der
+ * Datenbank die Tabelle <code>networks</code> dar.
  * 
- * Im Detail usw, usw.<code>new Network()</code>
+ * Im Detail hat die Klasse eine automatisch generierte Id, und besitzt mehrere
+ * Beziehungen.
  * 
- * <pre>
- * this is a    x
- * look u  a    e
- * </pre>
+ * Die erste Beziehung hat sie mit sich selbst - dadurch haben Netzwerke immer
+ * ein übergeordnetes Netzwerk.
+ * 
+ * Des Weiteren verfügt sie über eine <code>@OneToMany</code> -Beziehung zur
+ * Entity <code>Node</code>.
+ * 
+ * 
+ * Zu guter Letzt besitzt sie eine <code>@ManyToMany</code> -Beziehung zur
+ * Entity <code>Deploy</code>. Hier wird eine Zwischentabelle
+ * <code>networks_has_deploy</code>, die als Fremdschlüssel die Id's der beiden
+ * Tabellen Network und Deploy beinhaltet.
+ * 
+ *
  * 
  * @author Rebecca vanLangelaan
- *
  */
+
 @Entity
 @Table(name = "networks")
 public class Network implements Serializable {
@@ -100,10 +111,9 @@ public class Network implements Serializable {
 	public void setNode(Set<Node> nodes) {
 		this.nodes = nodes;
 	}
-	
+
 	@ManyToMany
-	@JoinTable(name = "networks_has_deploy", joinColumns = @JoinColumn(name = "networks_networkID", referencedColumnName = "networkID"), 
-		inverseJoinColumns = @JoinColumn(name = "deploy_deployID", referencedColumnName = "deployID"))
+	@JoinTable(name = "networks_has_deploy", joinColumns = @JoinColumn(name = "networks_networkID", referencedColumnName = "networkID"), inverseJoinColumns = @JoinColumn(name = "deploy_deployID", referencedColumnName = "deployID"))
 	private Set<Deploy> deploy;
 
 	public Set<Deploy> getDeploy() {
@@ -113,11 +123,6 @@ public class Network implements Serializable {
 	public void setDeploy(Set<Deploy> deploy) {
 		this.deploy = deploy;
 	}
-	
-	
-	
-	
-	
 
 	public Network() {
 	}
@@ -135,27 +140,17 @@ public class Network implements Serializable {
 		this.networkID = networkID;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getNetworkName() {
 		return networkName;
 	}
 
-	/**
-	 * ahgsjhdgfjasdhfgdhagjdfgjsdf
-	 * 
-	 * @param networkName
-	 *            @
-	 */
 	public void setNetworkName(String networkName) {
 		this.networkName = networkName;
 	}
 
 	@Override
 	public String toString() {
-		return "[" + super.toString() + ", " + getNetworkID() + ", " + getNetworkName() + "]";
+		return getNetworkID() + ", " + getNetworkName();
 	}
 
 }
