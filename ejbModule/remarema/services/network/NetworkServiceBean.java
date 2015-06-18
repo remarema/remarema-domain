@@ -290,11 +290,12 @@ public class NetworkServiceBean {
 	
 	public List<NodeDetail> mapNodesToNodeDetail(List<Node> results){
 		List<NodeDetail> nodeDetail = new ArrayList<NodeDetail>();
-		for (Node result : results){
+		for (Node result: results){
+			Node node = em.find(Node.class, result.getID());
 			NodeDetail detail = new NodeDetail();
-			detail.setNodeID(result.getID());
-			detail.setNodeName(result.getNodeName());
-			detail.setNodeIP(new IPAddress(result.getNodeIP()));
+			detail.setNodeID(node.getID());
+			detail.setNodeName(node.getNodeName());
+			detail.setNodeIP(new IPAddress(node.getNodeIP()));
 			nodeDetail.add(detail);
 		}
 		return nodeDetail;
