@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import remarema.api.UserDetail;
-import remarema.domain.User;
 
 @Stateless
 @LocalBean

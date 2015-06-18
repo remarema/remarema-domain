@@ -1,4 +1,4 @@
-package remarema.domain;
+package remarema.services.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

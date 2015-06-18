@@ -178,7 +178,7 @@ public class NodeServiceBean {
 
 	List<Node> findNodesByNetworkId(int networkID) {
 		TypedQuery<Node> query = em.createQuery(
-				"SELECT o From Node o WHERE o.networks_networkID = "+ networkID + " ORDER BY o.nodeName ",
+				"SELECT o From Node o WHERE o.network = "+ networkID + " ORDER BY o.nodeName ",
 				Node.class);
 		query.setParameter("networkID", networkID);
 		List<Node> nodes = query.getResultList();
