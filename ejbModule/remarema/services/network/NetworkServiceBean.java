@@ -276,31 +276,5 @@ public class NetworkServiceBean {
 
 	}
 	
-	public List<NodeDetail> getNodeDetailForNetworkID(NetworkDetail networkDetail){
-		int networkID = networkDetail.getNetworkID();
-		List<Node> results = findNodesByNetworkId(networkID);
-		return mapNodesToNodeDetail(results);
-	}
-
-	List<Node> findNodesByNetworkId(int networkID) {
-		TypedQuery<Node> query = em.createQuery(
-				"SELECT o From Node o WHERE o.networks_networkID = :networkID",
-				Node.class);
-		query.setParameter("networkID", networkID);
-		List<Node> nodes = query.getResultList();
-		return nodes;
-	}
-	
-	public List<NodeDetail> mapNodesToNodeDetail(List<Node> results){
-		List<NodeDetail> nodeDetail = new ArrayList<NodeDetail>();
-		for (Node result: results){
-			NodeDetail detail = new NodeDetail();
-			detail.setNodeID(result.getID());
-			detail.setNodeName(result.getNodeName());
-			detail.setNodeIP(new IPAddress(result.getNodeIP()));
-			nodeDetail.add(detail);
-		}
-		return nodeDetail;
-	}
 }
 

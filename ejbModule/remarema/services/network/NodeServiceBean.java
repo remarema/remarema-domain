@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import remarema.api.network.CreateNode;
+import remarema.api.network.NetworkDetail;
 import remarema.api.network.NodeDetail;
 import remarema.api.network.UpdateNode;
 import remarema.domain.Network;
@@ -169,6 +170,18 @@ public class NodeServiceBean {
 		
 	}
 	
-	
+	public List<NodeDetail> getNodeDetailForNetworkID(NetworkDetail networkDetail){
+		int networkID = networkDetail.getNetworkID();
+		List<Node> results = findNodesByNetworkId(networkID);
+		return mapNodesToNodeDetail(results);
+	}
 
+	List<Node> findNodesByNetworkId(int networkID) {
+		TypedQuery<Node> query = em.createQuery(
+				"SELECT o From Node o WHERE o.networks_networkID = "+ networkID + " ORDER BY o.nodeName ",
+				Node.class);
+		query.setParameter("networkID", networkID);
+		List<Node> nodes = query.getResultList();
+		return nodes;
+	}
 }
