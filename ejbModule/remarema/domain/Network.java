@@ -102,13 +102,13 @@ public class Network implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "network", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Node> nodes;
+	private List<Node> nodes;
 
-	public Set<Node> getNode() {
+	public List<Node> getNode() {
 		return nodes;
 	}
 
-	public void setNode(Set<Node> nodes) {
+	public void setNode(List<Node> nodes) {
 		this.nodes = nodes;
 	}
 

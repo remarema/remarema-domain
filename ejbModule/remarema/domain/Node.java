@@ -14,8 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import remarema.services.network.IPAddress;
-
 @Entity
 @Table(name = "nodes")
 public class Node implements Serializable {

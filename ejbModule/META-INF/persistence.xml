@@ -16,19 +16,10 @@
 
 		<properties>
 
-			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='add',ForeignKeys=true)" />
+			<property name="openjpa.jdbc.SynchronizeMappings"
+				value="buildSchema(SchemaAction='add',ForeignKeys=true)" />
 
-			<!-- <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/remarema"/> 
-				<property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/> 
-				<property name="openjpa.ConnectionUserName" value="root"/> <property name="openjpa.ConnectionPassword" 
-				value=""/> <property name="openjpa.DynamicEnhancementAgent" value="true"/> 
-				<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/> <property 
-				name="openjpa.ConnectionFactoryProperties" value="PrettyPrint=true, PrettyPrintLineLength=72, 
-				PrintParameters=true, MaxActive=10, MaxIdle=5, MinIdle=2, MaxWait=60000"/> -->
 		</properties>
 	</persistence-unit>
-
-
-
 
 </persistence>

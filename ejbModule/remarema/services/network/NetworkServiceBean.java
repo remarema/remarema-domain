@@ -11,9 +11,10 @@ import javax.persistence.TypedQuery;
 
 import remarema.api.network.CreateNetwork;
 import remarema.api.network.NetworkDetail;
+import remarema.api.network.NodeDetail;
 import remarema.api.network.UpdateNetwork;
 import remarema.domain.Network;
-
+import remarema.domain.Node;
 /**
  * Das NetworkServiceBean stellt alle notwendigen Methoden für die Verwaltung
  * von Netzwerken bereit. Diese Methoden umfassen das Anlegen, Updaten, und
@@ -274,5 +275,29 @@ public class NetworkServiceBean {
 		return mapNetworksToNetworkDetail(results);
 
 	}
+	
+	public List<NodeDetail> getNodeDetailForNetworkID(NetworkDetail networkDetail){
+		int networkID = networkDetail.getNetworkID();
+		List<Node> results = findNodesByNetworkId(networkID);
+		return mapNodesToNodeDetail(results);
+	}
 
+	List<Node> findNodesByNetworkId(int networkID) {
+		Network nw = em.find(Network.class, networkID);
+		List<Node> nodes = nw.getNode();
+		return nodes;
+	}
+	
+	public List<NodeDetail> mapNodesToNodeDetail(List<Node> results){
+		List<NodeDetail> nodeDetail = new ArrayList<NodeDetail>();
+		for (Node result : results){
+			NodeDetail detail = new NodeDetail();
+			detail.setNodeID(result.getID());
+			detail.setNodeName(result.getNodeName());
+			detail.setNodeIP(new IPAddress(result.getNodeIP()));
+			nodeDetail.add(detail);
+		}
+		return nodeDetail;
+	}
 }
+
