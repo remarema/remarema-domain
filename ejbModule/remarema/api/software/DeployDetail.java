@@ -102,7 +102,7 @@ public class DeployDetail {
 		if(t.getMinutes() < 10){
 			minutes = "0" + minutes; 
 		}
-		if(t.getMonth() < 10){
+		if(t.getMonth() < 9){
 			month = "0" + month; 
 		}
 		return day + "." + month + "." + year + " "
