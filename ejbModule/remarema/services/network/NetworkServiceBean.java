@@ -15,6 +15,7 @@ import remarema.api.network.NodeDetail;
 import remarema.api.network.UpdateNetwork;
 import remarema.domain.Network;
 import remarema.domain.Node;
+
 /**
  * Das NetworkServiceBean stellt alle notwendigen Methoden für die Verwaltung
  * von Netzwerken bereit. Diese Methoden umfassen das Anlegen, Updaten, und
@@ -54,7 +55,7 @@ public class NetworkServiceBean {
 	 * 
 	 * Mit Hilfe der Methode <code>findParentNetwork()</code> wird überprüft, ob
 	 * das angebene Network-Parent überhaupt existiert. Danach wird mit
-	 * <code>Network nw = new Network()</code> ein neues Netzwerk angelegt. mit
+	 * <code>Network nw = new Network()</code> ein neues Netzwerk angelegt. Mit
 	 * <code>em.persist(nw)</code> wird der Datensatz in der Datenbank angelegt.
 	 * 
 	 * @param command
@@ -275,6 +276,5 @@ public class NetworkServiceBean {
 		return mapNetworksToNetworkDetail(results);
 
 	}
-	
-}
 
+}
