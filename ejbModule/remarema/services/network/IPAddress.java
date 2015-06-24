@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * Benutzer wird darauf hingewiesen, welcher Teil der IP-Adresse falsch verfasst
  * wurde.
  * 
- * @author Rebecca vanLangelaan
+ * @author Rebecca van Langelaan
  *
  */
 
@@ -24,6 +24,17 @@ public class IPAddress {
 	private int byte2;
 	private int byte3;
 
+	/**
+	 * Dieser Konstruktor wird benötigt, um anhand von 4 Bytes eine IP-Adresse
+	 * zu erstellen.
+	 * Es wird weiters die Methode {@link #validateByteRange(int)} aufgerufen. 
+	 * 
+	 * @param byte0
+	 * @param byte1
+	 * @param byte2
+	 * @param byte3
+	 * @throws IPNotValidException
+	 */
 	public IPAddress(int byte0, int byte1, int byte2, int byte3)
 			throws IPNotValidException {
 		validateByteRange(byte0);
@@ -36,6 +47,12 @@ public class IPAddress {
 		this.byte3 = byte3;
 	}
 
+	/**
+	 * Dieser Konstruktor wird benötigt, um einen Integer-Wert, der
+	 * aus der Datenbank ausgelesen wurde, in eine IP-Adresse umzuwandeln. 
+	 * @param sourceValue
+	 * 			IP-Adresse als Integer-Wert
+	 */
 	public IPAddress(int sourceValue) {
 		this.byte0 = (sourceValue >> 24) & 0xFF;
 		this.byte1 = (sourceValue >> 16) & 0xFF;
@@ -43,10 +60,31 @@ public class IPAddress {
 		this.byte3 = sourceValue & 0xFF;
 	}
 
+	/**
+	 * Diese Methode verwendet Bitshifting, um aus den 4 Bytes zu je 8 Bits, aus
+	 * denen eine IP-Adresse besteht, einen Integer, bestehend aus 32 Bits, zu
+	 * machen.
+	 * 
+	 * @return IPAdresse als Integer-Wert
+	 */
 	public int toInt() {
 		return ((byte0) << 24) | ((byte1) << 16) | ((byte2) << 8) | byte3;
 	}
 
+	/**
+	 * Die Methode enthält das Regex-Pattern. Die Funktion ist vom Typ IPAddress
+	 * und benötigt als Parameter eine IP-Adresse in Form eines Strings. Zu
+	 * Begin wird ein Matcher-Objekt erstellt und der Ausdruck
+	 * <code>Pattern.compile(regex).matcher(ipString)</code> aufgerufen. Statt
+	 * dem Begriff <code>regex</code>, wird das Pattern eingesetzt. Stimmt die
+	 * übergebene IP-Adresse mit dem Pattern überein, wird dem Benutzer die
+	 * IP-Adresse zurückgegben. Stimmt sie nicht überein, wird eine
+	 * <code>IPNotValidException</code> geworfen.
+	 * 
+	 * @param ipString
+	 * @return IPAddress
+	 * @throws IPNotValidException
+	 */
 	public static IPAddress parse(String ipString) throws IPNotValidException {
 		Matcher matcher = Pattern
 				.compile(
@@ -62,6 +100,17 @@ public class IPAddress {
 				parseAndValidateByte(matcher.group("Byte3")));
 	}
 
+	/**
+	 * Die Methode <code>parseAndValidateByte()</code> benötigt einen Parameter
+	 * vom Typ String. Dieser Parameter wird zuerst von einem String-Wert in
+	 * einen int-Wert geparsed. Danach wird für diesen int-Wert die Methode
+	 * {@link #validateByteRange(int)} aufgerufen, um den Wertebereich zu
+	 * prüfen.
+	 * 
+	 * @param source
+	 * @return temp - Stellt ein Byte einer IP-Adresse dar.
+	 * @throws IPNotValidException
+	 */
 	private static int parseAndValidateByte(String source)
 			throws IPNotValidException {
 		int temp = Integer.parseInt(source);
@@ -69,6 +118,15 @@ public class IPAddress {
 		return temp;
 	}
 
+	/**
+	 * Diese Methode prüft, ob sich die Bytes im richtigen Wertebereich
+	 * befinden. Ist der Wert kleiner als 0 bzw. größer als 255, wird eine
+	 * <code>IPNotValidException</code> geworfen. Diese gibt dem Benutzer eine
+	 * Fehlermeldung zurück, in der auch der ungültige Bereich angegeben wird.
+	 * 
+	 * @param value
+	 * @throws IPNotValidException
+	 */
 	private static void validateByteRange(int value) throws IPNotValidException {
 		if (value < 0 || value > 255) {
 			throw new IPNotValidException(
@@ -76,6 +134,7 @@ public class IPAddress {
 		}
 	}
 
+	// get-Methoden
 	public int getByte0() {
 		return byte0;
 	}
