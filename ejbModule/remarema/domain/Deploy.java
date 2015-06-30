@@ -16,6 +16,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Diese Klasse wurde mit <code>@Entity</code> annotiert und stellt somit eine
+ * Tabelle in der Datenbank dar. Sie enhält alle Datenfelder der Tabelle
+ * <code>deploy</code>. Des Weiteren gibt es diverse get- und set-Methoden.
+ * 
+ * Außerdem enthält die Klasse noch zwei Beziehungen, einmal zur Tabelle
+ * <code>softwareversion</code> und zur Tabelle <code>networks</code>.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 @Entity
 @Table(name = "deploy")
 public class Deploy implements Serializable {
@@ -36,14 +47,15 @@ public class Deploy implements Serializable {
 	@Column(name = "installationDateTime")
 	private Date installationDateTime;
 
-	public Deploy(){
-		
+	public Deploy() {
+
 	}
-	
-	public Deploy(Softwareversion softwareversion){
+
+	public Deploy(Softwareversion softwareversion) {
 		this.softwareversion = softwareversion;
 	}
-	
+
+	//Beziehung zur Tabelle "networks"
 	@ManyToMany
 	@JoinTable(name = "networks_has_deploy")
 	ArrayList<Network> networks;
@@ -55,7 +67,8 @@ public class Deploy implements Serializable {
 	public void setNetworks(ArrayList<Network> networks) {
 		this.networks = networks;
 	}
-	
+
+	//Beziehung zur Tabelle "softwareversion"
 	@JoinColumn(name = "softwareversion_softwareID", referencedColumnName = "softwareID")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Softwareversion softwareversion;
@@ -67,7 +80,7 @@ public class Deploy implements Serializable {
 	public void setSoftwareversion(Softwareversion softwareversion) {
 		this.softwareversion = softwareversion;
 	}
-	
+
 	public boolean hasSoftwareversion() {
 		return softwareversion != null;
 	}
@@ -95,7 +108,7 @@ public class Deploy implements Serializable {
 	public void setInstallationDateTime(Date installationDateTime) {
 		this.installationDateTime = installationDateTime;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "[" + super.toString() + ", Id = " + getDeployID() + "]";

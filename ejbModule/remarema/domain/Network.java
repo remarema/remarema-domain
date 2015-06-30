@@ -39,7 +39,7 @@ import javax.persistence.Table;
  * 
  *
  * 
- * @author Rebecca vanLangelaan
+ * @author Rebecca van Langelaan
  */
 
 @Entity

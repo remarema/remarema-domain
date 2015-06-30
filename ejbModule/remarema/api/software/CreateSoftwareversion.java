@@ -1,5 +1,13 @@
 package remarema.api.software;
 
+/**
+ * Dient als DTO. Beinhaltet alle Datenfelder, die zum Anlegen einer
+ * Softwareversion benötigt werden. Enthält auch alle get- und set-Methoden.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
+
 public class CreateSoftwareversion {
 
 	public int softwareID;
@@ -7,7 +15,6 @@ public class CreateSoftwareversion {
 	public String softwarePath;
 	public int softwarepackageID;
 	public String softwarepackageName;
-	
 
 	public int getSoftwareID() {
 		return softwareID;
@@ -32,7 +39,7 @@ public class CreateSoftwareversion {
 	public void setSoftwarePath(String softwarePath) {
 		this.softwarePath = softwarePath;
 	}
-	
+
 	public int getSoftwarepackageID() {
 		return softwarepackageID;
 	}
@@ -48,6 +55,5 @@ public class CreateSoftwareversion {
 	public void setSoftwarepackageName(String softwarepackageName) {
 		this.softwarepackageName = softwarepackageName;
 	}
-
 
 }

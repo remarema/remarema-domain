@@ -5,7 +5,13 @@ import java.util.Date;
 
 import remarema.api.network.NetworkDetail;
 
-
+/**
+ * Dient als DTO. Beinhaltet alle Datenfelder, die zum Anlegen einer
+ * Softwareverteilung benötigt werden. Enthält auch alle get- und set-Methoden.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 public class CreateDeployment {
 	public static ArrayList<NetworkDetail> networks = new ArrayList<>();
 
@@ -62,8 +68,5 @@ public class CreateDeployment {
 	public static void setNetworks(ArrayList<NetworkDetail> networks) {
 		CreateDeployment.networks = networks;
 	}
-
-	
-	
 
 }

@@ -16,6 +16,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Diese Klasse wurde mit <code>@Entity</code> annotiert und stellt somit eine
+ * Tabelle in der Datenbank dar. Sie enhält alle Datenfelder der Tabelle
+ * <code>softwareversion</code>. Des Weiteren gibt es diverse get- und
+ * set-Methoden.
+ * 
+ * Außerdem enthält die Klasse noch drei Beziehungen, einmal zur Tabelle
+ * <code>nodes</code>, zur Tabelle <code>softwarepackage</code> und zur Tabelle
+ * <code>deploy</code>.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 @Entity
 @Table(name = "softwareversion")
 public class Softwareversion implements Serializable {
@@ -87,11 +100,10 @@ public class Softwareversion implements Serializable {
 	public void setDeploy(Set<Deploy> deploy) {
 		this.deploy = deploy;
 	}
-	
+
 	public boolean hasDeploy() {
 		return deploy != null;
 	}
-
 
 	public int getSoftwareID() {
 		return softwareID;

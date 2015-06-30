@@ -1,5 +1,12 @@
 package remarema.api.software;
 
+/**
+ * Diese Klasse dient als DTO. Sie enthält alle Informationen, die es zu einer
+ * Softwareversion gibt. Vorhanden sind auch alle get- und set-Methoden.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 public class VersionDetail {
 
 	public int softwareID;

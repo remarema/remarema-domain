@@ -14,12 +14,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Diese Klasse wurde mit <code>@Entity</code> annotiert und stellt somit eine
+ * Tabelle in der Datenbank dar. Sie enhält alle Datenfelder der Tabelle
+ * <code>nodes</code>. Des Weiteren gibt es diverse get- und set-Methoden.
+ * 
+ * Außerdem enthält die Klasse noch zwei Beziehungen, einmal zur Tabelle
+ * <code>networks</code> und zur Tabelle <code>softwareversion</code>.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 @Entity
 @Table(name = "nodes")
 public class Node implements Serializable {
-	/**
-	 * 
-	 */
 
 	private static final long serialVersionUID = 1L;
 
@@ -59,8 +67,7 @@ public class Node implements Serializable {
 	}
 
 	@ManyToMany
-	@JoinTable(name = "nodes_has_softwareversion", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), 
-		inverseJoinColumns = @JoinColumn(name = "softwareversion_softwareID", referencedColumnName = "softwareID"))
+	@JoinTable(name = "nodes_has_softwareversion", joinColumns = @JoinColumn(name = "nodes_nodeID", referencedColumnName = "nodeID"), inverseJoinColumns = @JoinColumn(name = "softwareversion_softwareID", referencedColumnName = "softwareID"))
 	private Set<Softwareversion> softwareversions;
 
 	public Set<Softwareversion> getSoftwareversion() {

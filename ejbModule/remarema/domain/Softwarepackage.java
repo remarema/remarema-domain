@@ -13,6 +13,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Diese Klasse wurde mit <code>@Entity</code> annotiert und stellt somit eine
+ * Tabelle in der Datenbank dar. Sie enhält alle Datenfelder der Tabelle
+ * <code>softwarepackage</code>. Des Weiteren gibt es diverse get- und
+ * set-Methoden.
+ * 
+ * Außerdem enthält die Klasse noch eine Beziehungen zur Tabelle
+ * <code>softwareversion</code>.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 @Entity
 @Table(name = "softwarepackage")
 public class Softwarepackage implements Serializable {

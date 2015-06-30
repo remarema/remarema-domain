@@ -21,7 +21,7 @@ import remarema.domain.Node;
  * von Clients bereit. Die Methoden umfassen das Anlegen, Updaten, Löschen und
  * Auslesen von Clients.
  * 
- * @author Rebecca vanLangelaan
+ * @author Rebecca van Langelaan
  * 
  */
 @Stateless

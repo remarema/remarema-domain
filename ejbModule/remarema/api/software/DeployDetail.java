@@ -7,6 +7,14 @@ import org.slf4j.helpers.FormattingTuple;
 
 import remarema.api.network.NetworkDetail;
 
+/**
+ * Diese Klasse dient als DTO. Sie enthält alle Informationen, die für eine
+ * Softwareverteilung benötigt werden. Vorhanden sind auch alle get- und
+ * set-Methoden.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 public class DeployDetail {
 
 	public int deployID;
@@ -30,7 +38,6 @@ public class DeployDetail {
 		Date t = deployDateTime;
 		return formatDateTime(t);
 	}
-
 
 	public void setDeployDateTime(Date deployDateTime) {
 		this.deployDateTime = deployDateTime;
@@ -85,34 +92,35 @@ public class DeployDetail {
 	public int getPackageID() {
 		return packageID;
 	}
-	
+
 	private String formatDateTime(Date t) {
 		int year = t.getYear() + 1900;
-		String month = ""+(t.getMonth()+1);
-		String hours = ""+t.getHours();
-		String minutes = ""+ t.getMinutes();
-		String day = ""+ t.getDate();
-		
-		if(t.getDate() < 10){
+		String month = "" + (t.getMonth() + 1);
+		String hours = "" + t.getHours();
+		String minutes = "" + t.getMinutes();
+		String day = "" + t.getDate();
+
+		if (t.getDate() < 10) {
 			day = "0" + day;
 		}
-		if(t.getHours() < 10){
-			hours = "0" + hours; 
+		if (t.getHours() < 10) {
+			hours = "0" + hours;
 		}
-		if(t.getMinutes() < 10){
-			minutes = "0" + minutes; 
+		if (t.getMinutes() < 10) {
+			minutes = "0" + minutes;
 		}
-		if(t.getMonth() < 9){
-			month = "0" + month; 
+		if (t.getMonth() < 9) {
+			month = "0" + month;
 		}
-		return day + "." + month + "." + year + " "
-				+ hours + ":" + minutes;
+		return day + "." + month + "." + year + " " + hours + ":" + minutes;
 	}
-	
+
 	@Override
-	public String toString(){
-		return "[" + super.toString() + ", " + getDeployID() + ", " + getSoftwareID() + ", " + getNetworks() + "@" + Integer.toHexString(getNetworks().hashCode()) + "]";
-		
+	public String toString() {
+		return "[" + super.toString() + ", " + getDeployID() + ", "
+				+ getSoftwareID() + ", " + getNetworks() + "@"
+				+ Integer.toHexString(getNetworks().hashCode()) + "]";
+
 	}
 
 }

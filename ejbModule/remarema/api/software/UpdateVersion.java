@@ -1,5 +1,13 @@
 package remarema.api.software;
 
+/**
+ * Dient als DTO. Beinhaltet alle Datenfelder, die zum Bearbeiten einer
+ * Softwareversion benötigt werden. Enthält auch alle get- und set-Methoden.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
+
 public class UpdateVersion {
 
 	public int softwareID;

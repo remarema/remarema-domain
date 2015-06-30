@@ -25,7 +25,7 @@ import remarema.domain.Node;
  * <code>loadNetworks()</code> und <code>mapNetworksToNetworkDetail()</code>
  * benötigt.
  * 
- * @author Rebecca vanLangelaan
+ * @author Rebecca van Langelaan
  * 
  */
 @Stateless
@@ -151,10 +151,10 @@ public class NetworkServiceBean {
 	 * Die Methode <code>networkUpdate()</code> wird dazu benötigt, ein
 	 * vorhandenes Netzwerk zu bearbeiten. Zuerst wird geprüft, ob das Netzwerk
 	 * überhaupt existiert - dazu ließt man vom übergebenen
-	 * <code>UpdateNetwork>-Objekt die Id des Netzwerkes aus. Wurde das Netzwerk
+	 * <code>UpdateNetwork</code>-Objekt die Id des Netzwerkes aus. Wurde das Netzwerk
 	 * gefunden, wird der Name neu gesetzt. Außerdem wird überprüft, ob das Parent-Network existiert 
 	 * und wenn ja, wird auch dieses zum Netzwerk hinzugefügt. 
-	 * Upgedated wird dann mit dem Befehl <code>em.flush()</code>.
+	 * Upgedated wird dann mit dem Befehl <code>flush()</code>.
 	 * 
 	 * @param command
 	 */

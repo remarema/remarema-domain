@@ -1,5 +1,13 @@
 package remarema.api.software;
 
+/**
+ * Dient als DTO. Beinhaltet alle Datenfelder, die zum Bearbeiten einer
+ * Softwareverteilung benötigt werden. Enthält auch alle get- und set-Methoden.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

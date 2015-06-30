@@ -5,7 +5,7 @@ package remarema.services.network;
  * wenn der Benutzer beim Anlegen eines neuen Clients oder beim Bearbeiten eines
  * Clients eine ungültige IP-Adresse eingibt.
  * 
- * @author Rebecca vanLangelaan
+ * @author Rebecca van Langelaan
  */
 public class IPNotValidException extends Exception {
 	private static final long serialVersionUID = 1L;

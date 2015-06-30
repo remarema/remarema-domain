@@ -5,7 +5,7 @@ package remarema.services.network;
  * versucht wird ein Parent-Network zu löschen, welches aber noch Child-Networks
  * besitzt.
  * 
- * @author Rebecca vanLangelaan
+ * @author Rebecca van Langelaan
  *
  */
 public class ChildNotEmptyException extends Exception {

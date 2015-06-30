@@ -2,7 +2,13 @@ package remarema.api.network;
 
 import remarema.services.network.IPAddress;
 
-
+/**
+ * Diese Klasse dient als DTO. Sie enthält alle Informationen, die es zu einem
+ * Client gibt. Vorhanden sind auch alle get- und set-Methoden.
+ * 
+ * @author Rebecca van Langelaan
+ *
+ */
 public class NodeDetail {
 
 	public Integer nodeID;
